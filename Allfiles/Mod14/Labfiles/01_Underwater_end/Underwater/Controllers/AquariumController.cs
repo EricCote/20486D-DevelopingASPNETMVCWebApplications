@@ -15,9 +15,9 @@ namespace Underwater.Controllers
     public class AquariumController : Controller
     {
         private IUnderwaterRepository _repository;
-        private IHostingEnvironment _environment;
+        private IWebHostEnvironment _environment;
 
-        public AquariumController(IUnderwaterRepository repository, IHostingEnvironment environment)
+        public AquariumController(IUnderwaterRepository repository, IWebHostEnvironment environment)
         {
             _repository = repository;
             _environment = environment;
