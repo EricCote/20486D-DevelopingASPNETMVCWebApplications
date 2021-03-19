@@ -30,14 +30,15 @@ namespace Underwater
             services.AddDbContext<UnderwaterContext>(options =>
                 options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddMvc();
+            services.AddMvc(options => options.EnableEndpointRouting = false);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseStaticFiles();
 
             app.UseNodeModules(env.ContentRootPath);
+           
 
             app.UseMvc(routes =>
             {
