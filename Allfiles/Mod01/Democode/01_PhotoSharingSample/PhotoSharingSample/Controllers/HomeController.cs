@@ -12,9 +12,9 @@ namespace PhotoSharingSample.Controllers
     public class HomeController : Controller
     {
         private PhotoSharingDB _dbContext;
-        private IHostingEnvironment _environment;
+        private IWebHostEnvironment _environment;
 
-        public HomeController(PhotoSharingDB dbContext, IHostingEnvironment environment)
+        public HomeController(PhotoSharingDB dbContext, IWebHostEnvironment environment)
         {
             _dbContext = dbContext;
             _environment = environment;

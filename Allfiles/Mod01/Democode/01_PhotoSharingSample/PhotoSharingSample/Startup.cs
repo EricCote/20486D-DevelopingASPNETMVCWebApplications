@@ -36,7 +36,14 @@ namespace PhotoSharingSample
 
             app.UseStaticFiles();
 
-            app.UseMvcWithDefaultRoute();
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+
+                //endpoints.MapControllers();
+                endpoints.MapDefaultControllerRoute();
+            });
         }
     }
 }
