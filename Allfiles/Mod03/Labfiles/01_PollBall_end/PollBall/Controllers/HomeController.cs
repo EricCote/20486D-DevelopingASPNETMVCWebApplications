@@ -1,16 +1,16 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using PollBall.Services;
+using System.Text;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using PollBall.Services;
-using System.Text;
 
 namespace PollBall.Controllers
 {
     public class HomeController : Controller
     {
-        IPollResultsService _pollResults;
+        private IPollResultsService _pollResults;
 
         public HomeController(IPollResultsService pollResults)
         {
@@ -28,7 +28,7 @@ namespace PollBall.Controllers
                 {
                     results.Append($"Game name: {gameVotes.Key}. Votes: {gameVotes.Value}{Environment.NewLine}");
                 }
-
+                 
                 return Content(results.ToString());
             }
             else
