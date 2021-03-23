@@ -43,22 +43,23 @@ The main tasks for this exercise are as follows:
 
 #### Task 1: Creating a Razor Pages application
 
-1. Start Visual Studio 2017 and create a new **ASP.NET Core Web Application** with following information:
+1. Start Visual Studio 2017 and create a new **ASP.NET Core Web App** with following information:
 
     - Name: **ActorsRazorPages**
     - Location: **[Repository Root]\Allfiles\Mod01\Labfiles\01_ActorsRazorPages_begin**
     - Solution name: **ActorsRazorPages**
     - Create directory for solution: **True**
-    - Project template: **Web Application**
-    - Enable docker support: **False**
+    - Project template: **ASP.NET Core Web App**
     - Configure for HTTPS: **False**
-    - Set the ASP.NET Core version to **2.1**
+    - Enable docker support: **False**
+    - Enable Razor runtime compilation : **False**
+    - Set the ASP.NET Core version to **5.0**
 
 2. Start the application without debugging.
 
-3. In the **Microsoft Edge** window, view the **Contact** page.
+3. In the browser window, view the **Privacy** page.
 
-4. Close Microsoft Edge.
+4. Close the browser.
 
 #### Task 2: Explore the application structure
 
@@ -90,15 +91,15 @@ The main tasks for this exercise are as follows:
     - Key: **Title**
     - Value : **"Test Page"**
 
-4. Add an **H1** element with the following information:
+4. Add an **h1** element with the following information:
     - Content: **@ViewData["Title"]**
 
-5. Add an **H2** element with the following information:
+5. Add an **h2** element with the following information:
     - Content: **This is a Test Page**
 
-6. In the **_Layout.cshtml** page, in the **UL** element, add an **LI** element.
+6. In the **_Layout.cshtml** page, in the **ul** element, add an **li** element.
 
-7. In the new **LI** element,  add an **A** element with the following information:
+7. In the new **li** element,  add an **a** element with the following information:
 
     - Content: **Test Page**
     - asp-page: **/TestPage**
@@ -273,7 +274,7 @@ The main tasks for this exercise are as follows:
 
 5. Verify that the **site.css** file is used to apply styles to all the pages.
 
-6. Close the **Microsoft Edge** window.
+6. Close the browser window.
 
 7. Close Microsoft Visual Studio.
 
@@ -313,9 +314,9 @@ The main tasks for this exercise are as follows:
 
 2. Start the application without debugging.
 
-3. In the **Microsoft Edge** window, view the content in the browser.
+3. In the browser window, view the content.
 
-4. Close Microsoft Edge.
+4. Close the browser.
 
 #### Task 3: Add simple functionality
 
@@ -459,13 +460,13 @@ The main tasks for this exercise are as follows:
 
     >**Note**: The browser displays a list of cake stores in JSON format.
 
-3. In the **Microsoft Edge** window, access the following relative path:
+3. In the browser window, access the following relative path:
 
     - Path: **/api/CakeStore/1**
 
     >**Note**: The browser displays the first cake store in the JSON format.
 
-4. Close Microsoft Edge.
+4. Close the browser.
 
     >**Results**: At the end of this exercise, you will be able to build a simple Web API application in Visual Studio.
 
@@ -501,15 +502,15 @@ The main tasks for this exercise are as follows:
 
 2. Start the application without debugging.
 
-3. In the **Microsoft Edge** window, view the **Contact** page.
+3. In the browser window, view the **Privacy** page.
 
-4. Close Microsoft Edge.
+4. Close the browser.
 
 #### Task 2: Explore the application structure
 
 1. In the **_ViewStart.cshtml** file, note that the value of **Layout** is **"_Layout"**.
 
-2. In the **Contact.cshtml**  page, note that there are no links to the **.css** files.
+2. In the **Privacy.cshtml**  page, note that there are no links to the **.css** files.
 
 3.  In the **_Layout.cshtml** page, in the **HEAD** element, note that there is a link to **~/css/site.css**.
 
@@ -759,7 +760,7 @@ The main tasks for this exercise are as follows:
 
 5. Verify that the **site.css** file is used to apply styles to all the pages.
 
-6. Close the **Microsoft Edge** window.
+6. Close the browser window.
 
 7. Close Microsoft Visual Studio.
 

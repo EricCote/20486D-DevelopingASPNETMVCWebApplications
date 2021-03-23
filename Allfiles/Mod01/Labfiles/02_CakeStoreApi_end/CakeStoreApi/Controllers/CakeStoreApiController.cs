@@ -1,16 +1,13 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using CakeStoreApi.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using CakeStoreApi.Models;
 
 namespace CakeStoreApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CakeStoreApiController : ControllerBase
+    public class CakeStoreApiController : Controller
     {
         private IData _data;
 
@@ -35,5 +32,6 @@ namespace CakeStoreApi.Controllers
             }
             return new ObjectResult(item);
         }
+
     }
 }

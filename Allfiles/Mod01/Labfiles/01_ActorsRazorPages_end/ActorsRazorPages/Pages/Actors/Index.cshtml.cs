@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ActorsRazorPages.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using ActorsRazorPages.Models;
 
 namespace ActorsRazorPages.Pages.Actors
 {
@@ -23,5 +23,6 @@ namespace ActorsRazorPages.Pages.Actors
         {
             Actors = _data.ActorsInitializeData();
         }
+
     }
 }

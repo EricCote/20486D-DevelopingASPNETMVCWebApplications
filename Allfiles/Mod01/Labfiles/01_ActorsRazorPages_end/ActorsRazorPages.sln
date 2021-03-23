@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActorsRazorPages", "ActorsRazorPages\ActorsRazorPages.csproj", "{DC008AE4-EA3E-406E-93AC-D330FC08508A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActorsRazorPages", "ActorsRazorPages\ActorsRazorPages.csproj", "{0587800B-FC93-4ECC-B80A-61867C1E263E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DC008AE4-EA3E-406E-93AC-D330FC08508A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC008AE4-EA3E-406E-93AC-D330FC08508A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC008AE4-EA3E-406E-93AC-D330FC08508A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC008AE4-EA3E-406E-93AC-D330FC08508A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0587800B-FC93-4ECC-B80A-61867C1E263E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0587800B-FC93-4ECC-B80A-61867C1E263E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0587800B-FC93-4ECC-B80A-61867C1E263E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0587800B-FC93-4ECC-B80A-61867C1E263E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {02774544-5609-45EC-8165-032D17FFB414}
+		SolutionGuid = {7205A558-580B-4DC4-BF0E-388DCE542013}
 	EndGlobalSection
 EndGlobal
