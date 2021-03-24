@@ -29,19 +29,23 @@ namespace ZooSite
             services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ZooContext zooContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ZooContext zooContext)
         {
             zooContext.Database.EnsureDeleted();
             zooContext.Database.EnsureCreated();
 
-            app.UseMvc(routes =>
+
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "ZooRoute",
-                    template: "{controller}/{action}/{id?}",
+                    pattern: "{controller}/{action}/{id?}",
                     defaults: new { controller = "Zoo", action = "Index" },
                     constraints: new { id = "[0-9]+" });
             });
+
         }
     }
 }

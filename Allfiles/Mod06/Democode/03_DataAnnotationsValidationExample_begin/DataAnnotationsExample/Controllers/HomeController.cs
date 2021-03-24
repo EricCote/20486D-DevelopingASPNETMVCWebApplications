@@ -16,7 +16,12 @@ namespace DataAnnotationsExample.Controllers
 
         public IActionResult Details(Person person)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Index", person);
+            }
             return View(person);
+
         }
     }
 }

@@ -15,13 +15,13 @@ namespace IceCreamCompany.Controllers
     public class IceCreamController : Controller
     {
         private IRepository _repository;
-        private IHostingEnvironment _environment;
+        private IWebHostEnvironment _environment;
 
-        public IceCreamController(IRepository repository, IHostingEnvironment environment)
+        public IceCreamController(IRepository repository, IWebHostEnvironment environment)
         {
             _repository = repository;
             _environment = environment;
-        }
+        } 
 
         public IActionResult Index()
         {
