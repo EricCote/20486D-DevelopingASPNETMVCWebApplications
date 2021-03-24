@@ -24,6 +24,6 @@ namespace Cupcakes
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-
+         
     }
 }

@@ -1,6 +1,7 @@
 ﻿
 @{
     Layout = null;
+    @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 }
 
 <!DOCTYPE html>
@@ -17,6 +18,6 @@
         Name: @ViewBag.SelectedEmployee
     </p>
     <img src="@Url.Action("GetImage", new {employeeName = ViewBag.SelectedEmployee })" width="500" />
-    <p>@Html.ActionLink("Back to employee selection list", "Index")</p>
+    <p>    <a asp-action="Index">Back to employee selection list</a></p>
 </body>
 </html>

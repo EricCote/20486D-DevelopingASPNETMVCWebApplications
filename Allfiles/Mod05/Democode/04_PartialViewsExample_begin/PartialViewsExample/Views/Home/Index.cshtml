@@ -16,11 +16,14 @@
     <table>
         @for (int rowIndex = 0; rowIndex < ViewBag.Rows; rowIndex++)
         {
-            <tr>
-                @for (int columnIndex = 0; columnIndex < ViewBag.Columns; columnIndex++)
-                {
-                }
-            </tr>
+        <tr>
+            @for (int columnIndex = 0; columnIndex < ViewBag.Columns; columnIndex++)
+            {
+
+                int cardIndex = columnIndex + (rowIndex * ViewBag.Columns);
+                @await Html.PartialAsync("_CardDesign", cardIndex);
+            }
+        </tr>
         }
     </table>
 </body>

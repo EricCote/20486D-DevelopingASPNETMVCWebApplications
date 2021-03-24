@@ -1,6 +1,9 @@
 ﻿
 @{
     Layout = null;
+
+    @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 }
 
 <!DOCTYPE html>
@@ -16,9 +19,9 @@
     <p>Please select an employee from the list:</p>
     @foreach (string currentName in ViewBag.EmployeeNames)
     {
-        <div>
-            @Html.ActionLink(currentName, "Details", new { employeeName = currentName })
-        </div>
+<div>
+    <a asp-action="Details" asp-route-employeename="@currentName">@currentName</a>
+</div>
     }
 </body>
 </html>

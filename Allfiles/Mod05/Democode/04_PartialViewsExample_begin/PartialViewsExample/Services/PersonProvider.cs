@@ -11,6 +11,7 @@ namespace PartialViewsExample.Services
 
         public PersonProvider()
         {
+            PersonList = PersonInitializer();
         }
 
         private List<Person> PersonInitializer()

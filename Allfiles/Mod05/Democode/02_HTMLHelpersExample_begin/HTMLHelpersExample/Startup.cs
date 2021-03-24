@@ -24,7 +24,7 @@ namespace HTMLHelpersExample
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                await context.Response.WriteAsync("Erreur 404!");
             });
         }
     }

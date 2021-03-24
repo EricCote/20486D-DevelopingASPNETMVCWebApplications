@@ -253,10 +253,15 @@ The main tasks for this exercise are as follows:
 
 #### Task 1b: Set up Entity Framework Core 
 
-1. Add a NuGet Package with the following information:
+1. Add 3 NuGet Packages with the following information:
 
    - Package: **Microsoft.EntityFrameworkCore** 
    - Version: **5.0.4**
+   - Package: **Microsoft.EntityFrameworkCore.Design** 
+   - Version: **5.0.4**
+   - Package: **Microsoft.EntityFrameworkCore.Tools** 
+   - Version: **5.0.4**
+
 
 
 #### Task 2: Create a class that derives from DbContext
@@ -645,7 +650,7 @@ The main tasks for this exercise are as follows:
 3. Create a new field with the following information:
 
    - Scope: **private**
-   - Type: **IHostingEnvironment**
+   - Type: **IWebHostEnvironment**
    - Name: **_environment**
 
 4. Add a constructor with the following parameters:
@@ -655,7 +660,7 @@ The main tasks for this exercise are as follows:
         - Type: **ICupcakeRepository**
         - Name: **repository**
    - Parameter:
-        - Type: **IHostingEnvironment**
+        - Type: **IWebHostEnvironment**
         - Name: **environment**
 
 5. In the **CupcakeController** constructor, initialize the **_repository** field with the value of the **repository** parameter.
