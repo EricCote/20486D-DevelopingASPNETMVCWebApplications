@@ -35,6 +35,8 @@ Estimated Time: **60 minutes**
 
 3. In the **WorldJourney - Microsoft Visual Studio** window, on the **DEBUG** menu, click **Start Without Debugging**.
 
+  >**Note**: The web error 500 is normal: we don't have any controller yet to display. 
+
 4. In Microsoft Edge, in the address bar, note the port number that appears at the end of the URL **http://localhost:[port]**. You will use the port number during this lab.
 
 5. In Microsoft Edge, click **Close**.
@@ -168,7 +170,7 @@ The main tasks for this exercise are as follows:
 
 2. Create a new field with the following information:
    - Scope: **private**
-   - Type: **IHostingEnvironment**
+   - Type: **IWebHostEnvironment**
    - Name: **_environment** 
 
 3. Add a constructor with the following parameters:
@@ -176,7 +178,7 @@ The main tasks for this exercise are as follows:
         - Type: **IData** 
         - Name: **data**
     - Parameter: 
-        - Type: **IHostingEnvironment**
+        - Type: **IWebHostEnvironment**
         - Name: **environment**
 
 4. In the **CityController** constructor, initialize the **_data** field with the value of the **data** parameter.
@@ -265,17 +267,17 @@ The main tasks for this exercise are as follows:
 
 #### Task 3: Register new routes in the routing table
 
-1. In the **Startup** class, replace **app.UseMvcWithDefaultRoute**  with **app.UseMvc**.
+1. In the **Startup** class, in the **UseEndpoint** method, replace **endpoints.MapDefaultControllerRoute**  with **endpoints.MapControllerRoute**.
 
-2. In the **app.UseMvc** method, use the **MapRoute** method to add a custom route with the following information: 
-    - Name: **TravelerRoute**
-    - Template: **{controller}/{action}/{name}**
+2. In the **endpoints.MapControllerRoute** method, specify the following four arguments: 
+    - name: **TravelerRoute**
+    - pattern: **{controller}/{action}/{name}**
     - Defaults: **controller = "Traveler", action = "Index", name = "Katie Bruce"**
     - Constraints: **name = "[A-Za-z ]+"**
 
     >**Note**: You can replace the default name **Katie Bruce** with your name.
 
-3. Use the **MapRoute** method to add another custom route with the following information: 
+3. Create a second **endpoints.MapControllerRoute** method, following the first one. Specify the following arguments.   
     - Name: **defaultRoute**
     - Template: **{controller}/{action}/{id?}**
     - Defaults: **controller = "Home", action = "Index"**
@@ -371,7 +373,7 @@ The main tasks for this exercise are as follows:
 
 5. Create a new field with the following information:
    - Scope: **private**
-   - Type: **IHostingEnvironment**
+   - Type: **IWebHostEnvironment**
    - Name: **_environment** 
 
 6. Create a new field with the following information:
@@ -395,7 +397,7 @@ The main tasks for this exercise are as follows:
    - Name: **_fullPath** 
 
 10. Add a constructor with the following parameter: 
-    - Type: **IHostingEnvironment**
+    - Type: **IWebHostEnvironment**
     - Name: **environment**
 
 11. In the constructor, initialize the **_environment** field with the value of the **environment** parameter.

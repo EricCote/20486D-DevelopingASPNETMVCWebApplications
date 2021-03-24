@@ -21,7 +21,13 @@ namespace WorldJourney
         public void Configure(IApplicationBuilder app)
         {
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+
+            app.UseRouting();
+   
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapDefaultControllerRoute();
+            });
         }
     }
 }

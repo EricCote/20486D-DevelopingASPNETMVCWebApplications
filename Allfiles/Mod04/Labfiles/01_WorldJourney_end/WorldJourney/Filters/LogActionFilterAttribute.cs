@@ -11,13 +11,13 @@ namespace WorldJourney.Filters
 {
     public class LogActionFilterAttribute : ActionFilterAttribute
     {
-        private IHostingEnvironment _environment;
+        private IWebHostEnvironment _environment;
         private string _contentRootPath;
         private string _logPath;
         private string _fileName;
         private string _fullPath;
 
-        public LogActionFilterAttribute(IHostingEnvironment environment)
+        public LogActionFilterAttribute(IWebHostEnvironment environment)
         {
             _environment = environment;
             _contentRootPath = _environment.ContentRootPath;
