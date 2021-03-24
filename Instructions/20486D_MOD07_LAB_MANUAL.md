@@ -251,6 +251,13 @@ The main tasks for this exercise are as follows:
     - Maximum Length: **50**
     - Minimum Length: **4**
 
+#### Task 1b: Set up Entity Framework Core 
+
+1. Add a NuGet Package with the following information:
+
+   - Package: **Microsoft.EntityFrameworkCore** 
+   - Version: **5.0.4**
+
 
 #### Task 2: Create a class that derives from DbContext
 
@@ -296,7 +303,7 @@ The main tasks for this exercise are as follows:
 1. Add a NuGet Package with the following information:
 
    - Package: **Microsoft.EntityFrameworkCore.Sqlite** 
-   - Version: **2.1.0**
+   - Version: **5.0.4**
 
 2. In the **Startup** class, add the **USING** statements for the following namespaces:
 
@@ -895,6 +902,11 @@ The main tasks for this exercise are as follows:
 6. Run the application
 
 #### Task 1: Connect to a Microsoft SQL Server
+
+0. Add a NuGet Package with the following information:
+
+   - Package: **Microsoft.EntityFrameworkCore.SqlServer** 
+   - Version: **5.0.4**
 
 1. In the **Startup** class, in the **ConfigureServices** method, add a variable named *connectionString* of type **string**. Initialize the *connectionString* variable with the value **"Server=(localdb)\\MSSQLLocalDB;Database=BakeriesDb;Trusted_Connection=True;MultipleActiveResultSets=true"**.
 

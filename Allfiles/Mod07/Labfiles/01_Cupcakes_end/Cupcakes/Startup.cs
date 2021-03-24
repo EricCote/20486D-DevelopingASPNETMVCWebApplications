@@ -36,13 +36,15 @@ namespace Cupcakes
         {
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "CupcakeRoute",
-                    template: "{controller}/{action}/{id?}",
+                    pattern: "{controller}/{action}/{id?}",
                     defaults: new { controller = "Cupcake", action = "Index" },
-                    constraints: new { id = "[0-9]+" });
+                    constraints: new { id = "[0-9]+" }
+                );
             });
         }
     }
