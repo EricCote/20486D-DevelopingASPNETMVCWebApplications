@@ -19,14 +19,16 @@ namespace ButterfliesShop
             services.AddSingleton<IButterfliesQuantityService, ButterfliesQuantityService>();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
             app.UseStaticFiles();
-            app.UseMvc(routes =>
+
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "ButterflyRoute",
-                    template: "{controller}/{action}/{id?}",
+                    pattern: "{controller}/{action}/{id?}",
                     defaults: new { controller = "Butterfly", action = "Index" },
                     constraints: new { id = "[0-9]+" });
             });

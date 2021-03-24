@@ -12,11 +12,11 @@ namespace ButterfliesShop.Controllers
 {
     public class ButterflyController : Controller
     {
-        private IDataService _data;
-        private IHostingEnvironment _environment;
-        private IButterfliesQuantityService _butterfliesQuantityService;
+        private readonly IDataService _data;
+        private readonly IWebHostEnvironment _environment;
+        private readonly IButterfliesQuantityService _butterfliesQuantityService;
 
-        public ButterflyController(IDataService data, IHostingEnvironment environment, IButterfliesQuantityService butterfliesQuantityService)
+        public ButterflyController(IDataService data, IWebHostEnvironment environment, IButterfliesQuantityService butterfliesQuantityService)
         {
             _data = data;
             _environment = environment;
