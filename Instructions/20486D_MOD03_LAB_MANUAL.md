@@ -50,12 +50,13 @@ The main tasks for this exercise are the following:
 
 ####	Task 1: Create a new project by using the ASP.NET Core Empty project template
 
-1. Open Microsoft Visual Studio 2017 and create a new ASP.NET Core web application with following information:
+1. Open Microsoft Visual Studio 2019 and create a new ASP.NET Core Empty application with following information:
 
     - Name: **PollBall**
     - Location: **[Repository Root]\Allfiles\Mod03\Labfiles\01_PollBall_begin**
     - Create directory for solution: **True**
-    - Project template: **Empty**
+    - .NET Framework:  **.NET 5.0**
+    - Ensure all check boxes are cleared:
     - Enable Docker Support: **False**
     - Configure for HTTPS: **False**
 
@@ -384,7 +385,7 @@ The main tasks for this exercise are as follows:
         - Type: **IApplicationBuilder**
         - Name: **app**
     - Parameter:
-        - Type: **IHostingEnvironment**
+        - Type: **IWebHostEnvironment**
         - Name: **env**
     - Parameter:
         - Type: **IPollResultsService**
@@ -468,7 +469,15 @@ The main tasks for this exercise are the following:
 
 1. In the **ConfigureServices** method, call the **AddMVC** method of the *services* parameter.
 
-2. In **Startup** class, in the **Configure** method, between the **app.UseStaticFiles** and the **app.Run** middleware, call the **UseMvcWithDefaultRoute** method of the *app* parameter.
+2. In **Startup** class, in the **Configure** method, between the **app.UseStaticFiles** and the **app.Run** middleware, insert the following:
+```cs
+    app.UseRouting();
+
+    app.UseEndpoints(endpoints =>
+    {
+       endpoints.MapDefaultControllerRoute();
+    });
+```
 
 ####	Task 2: Add a controller
 

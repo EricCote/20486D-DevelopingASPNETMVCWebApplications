@@ -23,11 +23,13 @@ namespace CitiesWebsite
         {
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                 name: "Default",
-                template: "{controller}/{action}",
+                pattern: "{controller}/{action}",
                 defaults: new { controller = "City", action = "ShowCities" });
             });
 
