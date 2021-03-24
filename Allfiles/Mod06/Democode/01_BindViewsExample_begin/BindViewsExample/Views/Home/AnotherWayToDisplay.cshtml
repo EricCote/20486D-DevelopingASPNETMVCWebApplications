@@ -1,4 +1,4 @@
-﻿
+﻿@model BindViewsExample.Models.Restaurant
 @{
     Layout = null;
 }
@@ -12,5 +12,10 @@
     <link rel="stylesheet" type="text/css" href="~/css/style-sheet.css" />
 </head>
 <body>
+    <h1>Restaurant Information</h1>
+    <div>
+        @Html.EditorFor(m=>m)
+    </div>
+    <p id="remark">The second way to pass a model from an action to a view</p>
 </body>
 </html>
