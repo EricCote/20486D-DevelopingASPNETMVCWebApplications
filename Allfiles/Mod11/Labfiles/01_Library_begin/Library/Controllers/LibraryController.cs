@@ -15,9 +15,9 @@ namespace Library.Controllers
     {
 
         private LibraryContext _context;
-        private IHostingEnvironment _environment;
+        private IWebHostEnvironment _environment;
 
-        public LibraryController(LibraryContext libraryContext, IHostingEnvironment environment)
+        public LibraryController(LibraryContext libraryContext, IWebHostEnvironment environment)
         {
             _context = libraryContext;
             _environment = environment;

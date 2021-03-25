@@ -19,7 +19,12 @@ namespace CrossSiteRequestForgeryAttack
         public void Configure(IApplicationBuilder app)
         {
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+            app.UseRouting();
+
+            app.UseEndpoints(endpoint =>
+            {
+                endpoint.MapDefaultControllerRoute();
+            });
         }
     }
 }
