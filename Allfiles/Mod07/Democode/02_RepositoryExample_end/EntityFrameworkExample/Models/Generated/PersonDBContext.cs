@@ -32,13 +32,6 @@ namespace EntityFrameworkExample.Models
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
-            modelBuilder.Entity<Person>(entity =>
-            {
-                entity.Property(e => e.Pays)
-                    .HasMaxLength(10)
-                    .IsFixedLength(true);
-            });
-
             OnModelCreatingPartial(modelBuilder);
         }
 
