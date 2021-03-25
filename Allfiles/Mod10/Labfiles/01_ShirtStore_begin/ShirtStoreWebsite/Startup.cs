@@ -29,17 +29,20 @@ namespace ShirtStoreWebsite
             services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ShirtContext shirtContext)
+        public void Configure(IApplicationBuilder app,  ShirtContext shirtContext)
         {
             shirtContext.Database.EnsureDeleted();
             shirtContext.Database.EnsureCreated();
 
             app.UseStaticFiles();
-            app.UseMvc(routes =>
+
+            app.UseRouting();
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "defaultRoute",
-                    template: "{controller=Shirt}/{action=Index}/{id?}");
+                    pattern: "{controller=Shirt}/{action=Index}/{id?}");
             });
         }
     }
