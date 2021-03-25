@@ -47,11 +47,13 @@ namespace ShirtStoreWebsite
             shirtContext.Database.EnsureCreated();
 
             app.UseStaticFiles();
-            app.UseMvc(routes =>
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "defaultRoute",
-                    template: "{controller=Shirt}/{action=Index}/{id?}");
+                    pattern: "{controller=Shirt}/{action=Index}/{id?}");
             });
         }
     }
