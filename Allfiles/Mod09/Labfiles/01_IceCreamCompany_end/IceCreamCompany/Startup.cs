@@ -31,11 +31,12 @@ namespace IceCreamCompany
 
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                    name: "IceCreamRoute",
-                    template: "{controller}/{action}/{id?}",
+                endpoints.MapControllerRoute(name: "IceCreamRoute",
+                    pattern: "{controller}/{action}/{id?}",
                     defaults: new { controller = "IceCream", action = "Index" },
                     constraints: new { id = "[0-9]+" });
             });
