@@ -24,6 +24,14 @@
                     @Html.DisplayFor(model => Model.Description)
                 </span>
             </div>
+            <div>
+                <span class="display-label">
+                    @Html.DisplayNameFor(model => Model.LoadedFromDatabase)
+                </span>
+                <span class="display-field">
+                    @Model.LoadedFromDatabase.ToString("T")
+                </span>
+            </div>
         </div>
     </div>
 }

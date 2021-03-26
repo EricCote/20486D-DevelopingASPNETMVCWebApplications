@@ -618,7 +618,7 @@ The main tasks for this exercise are as follows:
 4. In the  **package.json** file, add the following key and value in the **dependencies** object:
 
 	- Key: **"@aspnet/signalr"**
-	- Value: **"^1.16.1"**
+	- Value: **"^1.1.4"**
 
 
 #### Task 3: Add a chat view

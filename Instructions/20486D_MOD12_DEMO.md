@@ -485,7 +485,7 @@ Ensure that you have cloned the **20486D** directory from GitHub. It contains th
 
 31. Place the cursor at the end of the located code, press Enter, and then type the following code:
 ```cs
-    "@aspnet/signalr": "1.16.1",
+    "@aspnet/signalr": "1.1.4",
 ```
 
 32. In the **SignalRExample – Microsoft Visual Studio** window, on the **FILE** menu, click **Save All**.
