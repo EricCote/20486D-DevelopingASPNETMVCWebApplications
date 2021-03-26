@@ -40,19 +40,20 @@ namespace ElectricStore
 
             app.UseSession();
 
-            app.UseSignalR(routes =>
+
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapHub<ChatHub>("/chatHub");
+                endpoints.MapHub<ChatHub>("/chatHub");
+                endpoints.MapControllerRoute(
+                    name: "ElectricStoreRoute",
+                    pattern: "{controller}/{action}/{id?}/{RefreshCache?}",
+                    defaults: new { controller = "Products", action = "Index" },
+                    constraints: new { id = "[0-9]+" }
+                );
             });
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "ElectricStoreRoute",
-                    template: "{controller}/{action}/{id?}/{RefreshCache?}",
-                    defaults: new { controller = "Products", action = "Index" },
-                    constraints: new { id = "[0-9]+" });
-            });
         }
     }
 }

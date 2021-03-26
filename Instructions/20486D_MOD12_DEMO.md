@@ -467,13 +467,13 @@ Ensure that you have cloned the **20486D** directory from GitHub. It contains th
 
 27. In the **Startup.cs** code window, locate the following code:
 ```cs
-    app.UseSignalR(routes =>
+    app.UseEndpoints(endpoints =>
     {
 ```
 
 28. Place the cursor at the end of the located code, press Enter, and then type the following code:
 ```cs
-    routes.MapHub<SquaresHub>("/squareshub");
+    endpoints.MapHub<SquaresHub>("/squareshub");
 ```
 
 29. In the **SignalRExample - Microsoft Visual Studio** window, in Solution Explorer, click **package.json**.
@@ -485,7 +485,7 @@ Ensure that you have cloned the **20486D** directory from GitHub. It contains th
 
 31. Place the cursor at the end of the located code, press Enter, and then type the following code:
 ```cs
-    "@aspnet/signalr": "1.0.0",
+    "@aspnet/signalr": "1.16.1",
 ```
 
 32. In the **SignalRExample – Microsoft Visual Studio** window, on the **FILE** menu, click **Save All**.

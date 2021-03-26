@@ -610,15 +610,15 @@ The main tasks for this exercise are as follows:
 
 2. In the **ConfigureServices** method, after the **services.AddSession** method call, call the **AddSignalR** method of the **services** parameter.
 
-3. In the **Configure** method, after the call to the **UseStaticFiles** method, call the **UseSignalR** method of the **app** parameter. Pass the following **routes =>
+3. In the **Configure** method, after the call to the **UseStaticFiles** method, call the **UseSignalR** method of the **app** parameter. Pass the following **endpoints =>
        {
-           routes.MapHub&lt;ChatHub&gt;("/chatHub");
+           endpoints.MapHub&lt;ChatHub&gt;("/chatHub");
        }** lambda expression as a parameter to the **UseSignalR** method. 
 
 4. In the  **package.json** file, add the following key and value in the **dependencies** object:
 
 	- Key: **"@aspnet/signalr"**
-	- Value: **"^1.0.0"**
+	- Value: **"^1.16.1"**
 
 
 #### Task 3: Add a chat view

@@ -21,9 +21,9 @@ namespace ElectricStore
             services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app, StoreContext storeContext, IHostingEnvironment environment)
+        public void Configure(IApplicationBuilder app, StoreContext storeContext, IWebHostEnvironment environment)
         {
-			
+
             storeContext.Database.EnsureDeleted();
             storeContext.Database.EnsureCreated();
 
@@ -31,14 +31,18 @@ namespace ElectricStore
 
             app.UseNodeModules(environment.ContentRootPath);
 
-            app.UseMvc(routes =>
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "ElectricStoreRoute",
-                    template: "{controller}/{action}/{id?}/{RefreshCache?}",
+                    pattern: "{controller}/{action}/{id?}/{RefreshCache?}",
                     defaults: new { controller = "Products", action = "Index" },
-                    constraints: new { id = "[0-9]+" });
+                    constraints: new { id = "[0-9]+" }
+                );
             });
+
         }
     }
 }

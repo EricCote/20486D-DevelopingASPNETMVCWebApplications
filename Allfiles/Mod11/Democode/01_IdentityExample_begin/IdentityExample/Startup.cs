@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using IdentityExample.Models;
 
 namespace IdentityExample
 {
@@ -19,6 +20,16 @@ namespace IdentityExample
                 options.UseSqlite("Data Source=student.db"));
 
             services.AddMvc();
+
+            services.AddDefaultIdentity<Student> (options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 7;
+                options.Password.RequireUppercase = true;
+
+                options.User.RequireUniqueEmail = true;
+            })
+     .AddEntityFrameworkStores<StudentContext>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, StudentContext studentContext)
@@ -27,6 +38,10 @@ namespace IdentityExample
             studentContext.Database.EnsureCreated();
 
             app.UseStaticFiles();
+
+            app.UseAuthentication();
+
+           
 
             app.UseNodeModules(env.ContentRootPath);
 
