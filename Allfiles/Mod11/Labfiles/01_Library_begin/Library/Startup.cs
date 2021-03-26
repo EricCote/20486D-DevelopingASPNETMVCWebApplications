@@ -41,6 +41,8 @@ namespace Library
 
             app.UseRouting();
 
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoint =>
             {
                 endpoint.MapControllerRoute(

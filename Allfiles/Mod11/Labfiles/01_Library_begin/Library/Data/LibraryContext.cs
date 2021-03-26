@@ -22,8 +22,14 @@ namespace Library.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            //modelBuilder.Entity<User>(
+            //eb =>
+            //{
+            //    eb.HasNoKey();
+            //});
+        
 
-            modelBuilder.Entity<Genre>().HasData(
+        modelBuilder.Entity<Genre>().HasData(
                 new Genre
                 {
                     Id = 1,

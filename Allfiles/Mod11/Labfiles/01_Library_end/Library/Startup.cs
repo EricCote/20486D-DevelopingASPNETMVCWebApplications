@@ -48,7 +48,7 @@ namespace Library
             });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, LibraryContext libraryContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, LibraryContext libraryContext)
         {
             libraryContext.Database.EnsureDeleted();
             libraryContext.Database.EnsureCreated();
@@ -59,13 +59,18 @@ namespace Library
 
             app.UseNodeModules(env.ContentRootPath);
 
-            app.UseMvc(routes =>
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoint =>
             {
-                routes.MapRoute(
-                    name: "LibraryRoute",
-                    template: "{controller}/{action}/{id?}",
+                endpoint.MapControllerRoute(
+                     name: "LibraryRoute",
+                    pattern: "{controller}/{action}/{id?}",
                     defaults: new { controller = "Library", action = "Index" },
-                    constraints: new { id = "[0-9]+" });
+                    constraints: new { id = "[0-9]+" }
+                );
             });
         }
     }
