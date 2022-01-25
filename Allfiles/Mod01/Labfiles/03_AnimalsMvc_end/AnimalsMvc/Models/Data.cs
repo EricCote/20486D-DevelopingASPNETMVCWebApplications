@@ -7,7 +7,7 @@ namespace AnimalsMvc.Models
 {
     public class Data : IData
     {
-        public List<Animal> AnimalsList { get; set; }
+        public List<Animal>? AnimalsList { get; set; }
 
         public List<Animal> AnimalsInitializeData()
         {
@@ -39,7 +39,7 @@ namespace AnimalsMvc.Models
             return AnimalsList;
         }
 
-        public Animal GetAnimalById(int? id)
+        public Animal? GetAnimalById(int? id)
         {
             if (id == null)
             {
@@ -47,7 +47,7 @@ namespace AnimalsMvc.Models
             }
             else
             {
-                return AnimalsList.SingleOrDefault(a => a.Id == id);
+                return AnimalsList?.SingleOrDefault(a => a.Id == id);
             }
         }
     }

@@ -7,7 +7,7 @@ namespace ActorsRazorPages.Models
 {
     public class Data : IData
     {
-        public List<Actor> ActorsList { get; set; }
+        public List<Actor> ActorsList { get; set; } = null!;
 
         public List<Actor> ActorsInitializeData()
         {
@@ -20,7 +20,7 @@ namespace ActorsRazorPages.Models
             return ActorsList;
         }
 
-        public Actor GetActorById(int? id)
+        public Actor? GetActorById(int? id)
         {
             if (id == null)
             {
@@ -28,7 +28,7 @@ namespace ActorsRazorPages.Models
             }
             else
             {
-                return ActorsList.SingleOrDefault(a => a.Id == id);
+                return ActorsList?.SingleOrDefault(a => a.Id == id);
             }
         }
     }

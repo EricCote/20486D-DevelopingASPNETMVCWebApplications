@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AnimalsMvc.Models;
 using Microsoft.AspNetCore.Mvc;
-using AnimalsMvc.Models;
 
 namespace AnimalsMvc.Controllers
 {
     public class AnimalsController : Controller
     {
         private IData _tempData;
-
         public AnimalsController(IData tempData)
         {
             _tempData = tempData;

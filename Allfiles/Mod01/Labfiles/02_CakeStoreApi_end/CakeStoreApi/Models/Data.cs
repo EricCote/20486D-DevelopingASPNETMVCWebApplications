@@ -7,7 +7,7 @@ namespace CakeStoreApi.Models
 {
     public class Data : IData
     {
-        public List<CakeStore> CakesList { get; set; }
+        public List<CakeStore>? CakesList { get; set; }
 
         public List<CakeStore> CakesInitializeData()
         {
@@ -22,7 +22,7 @@ namespace CakeStoreApi.Models
             return CakesList;
         }
 
-        public CakeStore GetCakeById(int? id)
+        public CakeStore? GetCakeById(int? id)
         {
             if (id == null)
             {

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CakeStoreApi.Models
+﻿namespace CakeStoreApi.Models
 {
     public interface IData
     {
-        List<CakeStore> CakesList { get; set; }
-        List<CakeStore> CakesInitializeData();
-        CakeStore GetCakeById(int? id);
+        public  List<CakeStore>? CakesList { get; set; }
+        public List<CakeStore> CakesInitializeData();
+        public CakeStore? GetCakeById(int?  id);
     }
 }
