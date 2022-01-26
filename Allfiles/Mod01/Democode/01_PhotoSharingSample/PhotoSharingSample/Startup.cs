@@ -23,7 +23,8 @@ namespace PhotoSharingSample
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            //services.AddMvc();  //Old way: This wraps "controllers with views" AND Razor Pages
+            services.AddControllersWithViews(); // no Razor pages support
 
             services.AddDbContext<PhotoSharingDB>(options =>
                    options.UseSqlServer(_configuration.GetConnectionString("PhotoSharingContext")));
@@ -36,7 +37,15 @@ namespace PhotoSharingSample
 
             app.UseStaticFiles();
 
-            app.UseMvcWithDefaultRoute();
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                //endpoints.MapDefaultControllerRoute();     //Old way:  adds the "standard" default route
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }
