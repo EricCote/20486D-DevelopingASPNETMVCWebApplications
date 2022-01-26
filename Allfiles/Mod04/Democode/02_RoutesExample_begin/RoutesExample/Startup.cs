@@ -11,14 +11,14 @@ namespace RoutesExample
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc();
-        }
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddMvc();
+        // }
 
-        public void Configure(IApplicationBuilder app)
-        {
+        // public void Configure(IApplicationBuilder app)
+        // {
             
-        }
+        // }
     }
 }
