@@ -1,6 +1,7 @@
 ﻿body {
     background: linear-gradient(to bottom right, DarkBlue 0%, DodgerBlue 100%);
     background-repeat: no-repeat;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 html {

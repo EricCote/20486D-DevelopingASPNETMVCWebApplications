@@ -11,25 +11,25 @@ namespace RazorSyntaxExample
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc();
-        }
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddMvc();
+        // }
 
-        public void Configure(IApplicationBuilder app)
-        {
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "Product",
-                    template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "Product", action = "Index" });
-            });
+        // public void Configure(IApplicationBuilder app)
+        // {
+        //     app.UseMvc(routes =>
+        //     {
+        //         routes.MapRoute(
+        //             name: "Product",
+        //             template: "{controller}/{action}/{id?}",
+        //             defaults: new { controller = "Product", action = "Index" });
+        //     });
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
-        }
+        //     app.Run(async (context) =>
+        //     {
+        //         await context.Response.WriteAsync("Hello World!");
+        //     });
+        // }
     }
 }

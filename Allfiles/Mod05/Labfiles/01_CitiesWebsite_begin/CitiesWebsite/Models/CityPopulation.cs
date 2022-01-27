@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿namespace CitiesWebsite.Models;
 
-namespace CitiesWebsite.Models
+public class CityPopulation
 {
-    public class CityPopulation
+    public int Year { get; }
+    public int City { get; }
+    public int Urban { get; }
+    public int Metro { get; }
+
+    public CityPopulation(int year, int city, int urban, int metro)
     {
-        public int Year { get; }
-        public int City { get; }
-        public int Urban { get; }
-        public int Metro { get; }
 
-        public CityPopulation(int year, int city, int urban, int metro)
-        {
-
-        }
     }
 }
+

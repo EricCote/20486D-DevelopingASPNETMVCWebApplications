@@ -11,21 +11,21 @@ namespace HTMLHelpersExample
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc();
-        }
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddMvc();
+        // }
 
-        public void Configure(IApplicationBuilder app)
-        {
-            app.UseStaticFiles();
+        // public void Configure(IApplicationBuilder app)
+        // {
+        //     app.UseStaticFiles();
 
-            app.UseMvcWithDefaultRoute();
+        //     app.UseMvcWithDefaultRoute();
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
-        }
+        //     app.Run(async (context) =>
+        //     {
+        //         await context.Response.WriteAsync("Hello World!");
+        //     });
+        // }
     }
 }

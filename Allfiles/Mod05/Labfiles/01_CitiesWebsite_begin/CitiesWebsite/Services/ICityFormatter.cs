@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿namespace CitiesWebsite.Services;
 
-namespace CitiesWebsite.Services
+public interface ICityFormatter
 {
-    public interface ICityFormatter
-    {
-        string GetFormattedPopulation(int population);
-    }
+    string GetFormattedPopulation(int population);
 }
+

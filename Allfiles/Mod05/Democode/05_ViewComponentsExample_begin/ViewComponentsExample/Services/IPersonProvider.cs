@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿namespace ViewComponentsExample.Services;
 
-namespace ViewComponentsExample.Services
+public interface IPersonProvider
 {
-    public interface IPersonProvider
-    {
-        List<Person> PersonList { get; }
-    }
+    List<Person> PersonList { get; }
 }

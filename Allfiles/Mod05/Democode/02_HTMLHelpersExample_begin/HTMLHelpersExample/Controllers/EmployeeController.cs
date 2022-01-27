@@ -1,26 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace HTMLHelpersExample.Controllers
+namespace HTMLHelpersExample.Controllers;
+
+public class EmployeeController : Controller
 {
-    public class EmployeeController : Controller
+    public IActionResult Index()
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        return View();
+    }
 
-        public IActionResult Details(string employeeName)
-        {
-            return View();
-        }
+    public IActionResult Details(string employeeName)
+    {
+        return View();
+    }
 
-        public IActionResult GetImage(string employeeName)
-        {
-            return Content("");
-        }
+    public IActionResult GetImage(string employeeName)
+    {
+        return Content("");
     }
 }
