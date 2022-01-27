@@ -18,7 +18,7 @@
     "ControllersExample": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:5041",
+      "applicationUrl": "http://localhost:5401",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

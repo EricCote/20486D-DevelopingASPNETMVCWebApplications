@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿namespace ControllersExample.Models;
 
-namespace ControllersExample.Models
+public class ExampleModel
 {
-    public class ExampleModel
-    {
-        public string Sentence { get; set; }
-    }
+    public string Sentence { get; set; }
 }
+
