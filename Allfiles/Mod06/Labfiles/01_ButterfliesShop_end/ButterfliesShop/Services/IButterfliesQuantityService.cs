@@ -1,14 +1,10 @@
 ﻿using ButterfliesShop.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace ButterfliesShop.Services
+namespace ButterfliesShop.Services;
+
+public interface IButterfliesQuantityService
 {
-    public interface IButterfliesQuantityService
-    {
-        int? GetButterflyFamilyQuantity(Family family);
-        void AddButterfliesQuantityData(Butterfly butterfly);
-    }
+    int? GetButterflyFamilyQuantity(Family family);
+    void AddButterfliesQuantityData(Butterfly butterfly);
 }
+

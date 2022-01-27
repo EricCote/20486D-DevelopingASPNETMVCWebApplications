@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿namespace ButterfliesShop.Models;
 
-namespace ButterfliesShop.Models
+public enum Family
 {
-    public enum Family
-    {
-        Grassland,
-        Nymphalidae,
-        Danaine,
-        Riodinidae
-    }
+    Grassland,
+    Nymphalidae,
+    Danaine,
+    Riodinidae
 }
+
