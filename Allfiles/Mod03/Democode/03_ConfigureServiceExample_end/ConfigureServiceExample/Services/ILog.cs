@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿namespace ConfigureServiceExample.Services;
 
-namespace ConfigureServiceExample.Services
+public interface ILog
 {
-    public interface ILog
-    {
-        void WriteLog(string logData);
-    }
+    void WriteLog(string logData);
 }
+

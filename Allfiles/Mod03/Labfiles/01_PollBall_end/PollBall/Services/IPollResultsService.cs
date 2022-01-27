@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace PollBall.Services
+﻿namespace PollBall.Services;
+public interface IPollResultsService
 {
-    public interface IPollResultsService
-    {
-        void AddVote(SelectedGame game);
-        SortedDictionary<SelectedGame, int> GetVoteResult();
-    }
+    void AddVote(SelectedGame game);
+    SortedDictionary<SelectedGame, int> GetVoteResult();
 }
+
