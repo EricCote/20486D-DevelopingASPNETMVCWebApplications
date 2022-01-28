@@ -1,45 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CachingExample.Data;
+﻿using CachingExample.Data;
 using CachingExample.Models;
 
-namespace CachingExample.Repositories
+namespace CachingExample.Repositories;
+
+public class ProductRepository : IProductRepository
 {
-    public class ProductRepository : IProductRepository
+    private ProductContext _context;
+
+    public ProductRepository(ProductContext context)
     {
-        private ProductContext _context;
+        _context = context;
+    }
 
-        public ProductRepository(ProductContext context)
-        {
-            _context = context;
-        }
+    public IEnumerable<Product> GetProducts()
+    {
+        return _context.Products.ToList();
+    }
 
-        public IEnumerable<Product> GetProducts()
+    public Product GetProduct(int id)
+    {
+        Product product = _context.Products.Where(p => p.Id == id).FirstOrDefault();
+        if (product != null)
         {
-            return _context.Products.ToList();
+            product.LoadedFromDatabase = DateTime.Now;
         }
+        return product;
+    }
 
-        public Product GetProduct(int id)
+    public Dictionary<int, string> GetProductNames()
+    {
+        IEnumerable<Product> products = _context.Products.ToList();
+        Dictionary<int, string> productNames = new Dictionary<int, string>();
+        foreach (Product product in products)
         {
-            Product product = _context.Products.Where(p => p.Id == id).FirstOrDefault();
-            if (product != null)
-            {
-                product.LoadedFromDatabase = DateTime.Now;
-            }
-            return product;
+            productNames[product.Id] = product.Name;
         }
-
-        public Dictionary<int, string> GetProductNames()
-        {
-            IEnumerable<Product> products = _context.Products.ToList();
-            Dictionary<int, string> productNames = new Dictionary<int, string>();
-            foreach(Product product in products)
-            {
-                productNames[product.Id] = product.Name;
-            }
-            return productNames;
-        }
+        return productNames;
     }
 }

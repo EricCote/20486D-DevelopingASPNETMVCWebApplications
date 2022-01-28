@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ProductsWebsite.Models;
+﻿using ProductsWebsite.Models;
 
-namespace ProductsWebsite.Repositories
+namespace ProductsWebsite.Repositories;
+public interface IProductRepository
 {
-    public interface IProductRepository
-    {
-        IEnumerable<Product> GetProducts();
-    }
+    IEnumerable<Product> GetProducts();
 }
+

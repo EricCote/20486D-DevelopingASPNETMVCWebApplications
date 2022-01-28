@@ -1,32 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 using System.ComponentModel.DataAnnotations;
 
-namespace CachingExample.Models
+namespace CachingExample.Models;
+public class Product
 {
-    public class Product
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public float BasePrice { get; set; }
+    public string Description { get; set; }
+    public string ImageName { get; set; }
+
+    [Display(Name = "Price")]
+    public string FormattedPrice
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public float BasePrice { get; set; }
-        public string Description { get; set; }
-        public string ImageName { get; set; }
-
-        [Display(Name = "Price")]
-        public string FormattedPrice
+        get
         {
-            get
-            {
-                return BasePrice.ToString($"C2", CultureInfo.GetCultureInfo("en-US"));
-            }
+            return BasePrice.ToString($"C2", CultureInfo.GetCultureInfo("en-US"));
         }
-
-        [NotMapped]
-        [Display(Name = "Last retrieved on")]
-        public DateTime LoadedFromDatabase { get; set; }
     }
+
+    [NotMapped]
+    [Display(Name = "Last retrieved on")]
+    public DateTime LoadedFromDatabase { get; set; }
 }
+

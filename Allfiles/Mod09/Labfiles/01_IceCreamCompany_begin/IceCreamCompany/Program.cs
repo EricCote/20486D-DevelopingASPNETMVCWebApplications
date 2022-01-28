@@ -22,7 +22,7 @@ using(var scope = app.Services.CreateScope())
 }
 
 app.UseStaticFiles();
-//app.UseNodeModules(app.Environment.ContentRootPath);
+
 
 app.UseRouting();
 
