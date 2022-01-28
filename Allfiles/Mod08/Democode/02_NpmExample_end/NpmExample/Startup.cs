@@ -12,18 +12,18 @@ namespace NpmExample
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc();
-        }
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddMvc();
+        // }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            app.UseStaticFiles();
+        // public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        // {
+        //     app.UseStaticFiles();
 
-            app.UseNodeModules(env.ContentRootPath);
+        //     app.UseNodeModules(env.ContentRootPath);
 
-            app.UseMvcWithDefaultRoute();
-        }
+        //     app.UseMvcWithDefaultRoute();
+        // }
     }
 }

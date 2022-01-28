@@ -1,24 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+﻿using LayoutExample.Data;
+using Microsoft.EntityFrameworkCore;
 
-namespace LayoutExample
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<StudentContext>(options =>
+                  options.UseSqlite("Data Source=student.db"));
+
+
+var app = builder.Build();
+
+
+using(var scope = app.Services.CreateScope())
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().Run();
-        }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
-    }
+    var studentContext = scope.ServiceProvider.GetRequiredService<StudentContext>();
+    studentContext.Database.EnsureDeleted();
+    studentContext.Database.EnsureCreated();
 }
+
+app.UseStaticFiles();
+
+app.UseRouting();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action}/{id?}",
+    defaults: new { controller = "Student", action = "Index" },
+    constraints: new { id = "[0-9]+" });
+
+app.Run();
+
