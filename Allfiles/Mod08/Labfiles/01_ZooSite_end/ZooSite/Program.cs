@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ZooSite.Data;
+using ZooSite.Middleware;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,7 @@ using(var scope = app.Services.CreateScope())
 }
 
 app.UseStaticFiles();
+app.UseNodeModules(app.Environment.ContentRootPath);
 
 app.UseRouting();
 
