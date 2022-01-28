@@ -1,24 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using IceCreamCompany.Data;
+using IceCreamCompany.Repositories;
 
-namespace IceCreamCompany
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<IRepository, Repository>();
+
+builder.Services.AddDbContext<IceCreamContext>(options =>
+                  options.UseSqlite("Data Source=iceCream.db"));
+
+
+var app = builder.Build();
+
+
+using(var scope = app.Services.CreateScope())
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().Run();
-        }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
-    }
+    var iceCreamContext = scope.ServiceProvider.GetRequiredService<IceCreamContext>();
+    iceCreamContext.Database.EnsureDeleted();
+    iceCreamContext.Database.EnsureCreated();
 }
+
+app.UseStaticFiles();
+//app.UseNodeModules(app.Environment.ContentRootPath);
+
+app.UseRouting();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action}/{id?}",
+    defaults: new { controller = "IceCream", action = "Index" },
+    constraints: new { id = "[0-9]+" });
+
+app.Run();
+
+

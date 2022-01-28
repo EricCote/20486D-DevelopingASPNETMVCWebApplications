@@ -14,31 +14,31 @@ namespace GridExample
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddDbContext<ChessLeagueContext>(options =>
-                   options.UseSqlite("Data Source=chessLeague.db"));
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddDbContext<ChessLeagueContext>(options =>
+        //            options.UseSqlite("Data Source=chessLeague.db"));
 
-            services.AddMvc();
-        }
+        //     services.AddMvc();
+        // }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ChessLeagueContext chessLeagueContext)
-        {
-            chessLeagueContext.Database.EnsureDeleted();
-            chessLeagueContext.Database.EnsureCreated();
+        // public void Configure(IApplicationBuilder app, IHostingEnvironment env, ChessLeagueContext chessLeagueContext)
+        // {
+        //     chessLeagueContext.Database.EnsureDeleted();
+        //     chessLeagueContext.Database.EnsureCreated();
 
-            app.UseStaticFiles();
+        //     app.UseStaticFiles();
 
-            app.UseNodeModules(env.ContentRootPath);
+        //     app.UseNodeModules(env.ContentRootPath);
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "ChessRoute",
-                    template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "Chess", action = "Index" },
-                    constraints: new { id = "[0-9]+" });
-            });
-        }
+        //     app.UseMvc(routes =>
+        //     {
+        //         routes.MapRoute(
+        //             name: "ChessRoute",
+        //             template: "{controller}/{action}/{id?}",
+        //             defaults: new { controller = "Chess", action = "Index" },
+        //             constraints: new { id = "[0-9]+" });
+        //     });
+        // }
     }
 }

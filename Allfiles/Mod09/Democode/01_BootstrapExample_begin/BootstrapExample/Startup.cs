@@ -12,25 +12,25 @@ namespace BootstrapExample
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc();
-        }
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddMvc();
+        // }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            app.UseStaticFiles();
+        // public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        // {
+        //     app.UseStaticFiles();
 
-            app.UseNodeModules(env.ContentRootPath);
+        //     app.UseNodeModules(env.ContentRootPath);
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "LibraryRoute",
-                    template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "Library", action = "Index" },
-                    constraints: new { id = "[0-9]+" });
-            });
-        }
+        //     app.UseMvc(routes =>
+        //     {
+        //         routes.MapRoute(
+        //             name: "LibraryRoute",
+        //             template: "{controller}/{action}/{id?}",
+        //             defaults: new { controller = "Library", action = "Index" },
+        //             constraints: new { id = "[0-9]+" });
+        //     });
+        // }
     }
 }

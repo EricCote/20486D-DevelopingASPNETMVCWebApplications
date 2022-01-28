@@ -1,26 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace BootstrapExample.Controllers
+namespace BootstrapExample.Controllers;
+
+public class LibraryController : Controller
 {
-    public class LibraryController : Controller
+    public IActionResult Index()
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        return View();
+    }
 
-        public IActionResult GetScienceFictionBooks()
-        {
-            return View();
-        }
+    public IActionResult GetScienceFictionBooks()
+    {
+        return View();
+    }
 
-        public IActionResult GetDramaBooks()
-        {
-            return View();
-        }
+    public IActionResult GetDramaBooks()
+    {
+        return View();
     }
 }

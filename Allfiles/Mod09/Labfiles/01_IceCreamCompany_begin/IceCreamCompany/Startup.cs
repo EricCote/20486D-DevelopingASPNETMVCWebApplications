@@ -14,31 +14,31 @@ namespace IceCreamCompany
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddTransient<IRepository, Repository>();
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddTransient<IRepository, Repository>();
 
-            services.AddDbContext<IceCreamContext>(options =>
-                 options.UseSqlite("Data Source=iceCream.db"));
+        //     services.AddDbContext<IceCreamContext>(options =>
+        //          options.UseSqlite("Data Source=iceCream.db"));
 
-            services.AddMvc();
-        }
+        //     services.AddMvc();
+        // }
 
-        public void Configure(IApplicationBuilder app, IceCreamContext iceCreamContext)
-        {
-            iceCreamContext.Database.EnsureDeleted();
-            iceCreamContext.Database.EnsureCreated();
+        // public void Configure(IApplicationBuilder app, IceCreamContext iceCreamContext)
+        // {
+        //     iceCreamContext.Database.EnsureDeleted();
+        //     iceCreamContext.Database.EnsureCreated();
 
-            app.UseStaticFiles();
+        //     app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "IceCreamRoute",
-                    template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "IceCream", action = "Index" },
-                    constraints: new { id = "[0-9]+" });
-            });
-        }
+        //     app.UseMvc(routes =>
+        //     {
+        //         routes.MapRoute(
+        //             name: "IceCreamRoute",
+        //             template: "{controller}/{action}/{id?}",
+        //             defaults: new { controller = "IceCream", action = "Index" },
+        //             constraints: new { id = "[0-9]+" });
+        //     });
+        // }
     }
 }

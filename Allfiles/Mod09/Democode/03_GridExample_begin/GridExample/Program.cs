@@ -1,24 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using GridExample.Data;
+using GridExample.Middleware;
 
-namespace GridExample
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<ChessLeagueContext>(options =>
+                  options.UseSqlite("Data Source=chessLeague.db"));
+
+
+var app = builder.Build();
+
+
+using(var scope = app.Services.CreateScope())
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().Run();
-        }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
-    }
+    var chessLeagueContext = scope.ServiceProvider.GetRequiredService<ChessLeagueContext>();
+    chessLeagueContext.Database.EnsureDeleted();
+    chessLeagueContext.Database.EnsureCreated();
 }
+
+app.UseStaticFiles();
+app.UseNodeModules(app.Environment.ContentRootPath);
+
+app.UseRouting();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action}/{id?}",
+    defaults: new { controller = "Chess", action = "Index" },
+    constraints: new { id = "[0-9]+" });
+
+app.Run();
+
+

@@ -11,22 +11,22 @@ namespace GulpExample
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc();
-        }
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddMvc();
+        // }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            app.UseStaticFiles();
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "PhotoBookRoute",
-                    template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "PhotoBook", action = "Index" },
-                    constraints: new { id = "[0-9]+" });
-            });
-        }
+        // public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        // {
+        //     app.UseStaticFiles();
+        //     app.UseMvc(routes =>
+        //     {
+        //         routes.MapRoute(
+        //             name: "PhotoBookRoute",
+        //             template: "{controller}/{action}/{id?}",
+        //             defaults: new { controller = "PhotoBook", action = "Index" },
+        //             constraints: new { id = "[0-9]+" });
+        //     });
+        // }
     }
 }
