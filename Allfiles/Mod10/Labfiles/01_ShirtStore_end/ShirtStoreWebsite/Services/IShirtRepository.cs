@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ShirtStoreWebsite.Models;
+﻿using ShirtStoreWebsite.Models;
 
-namespace ShirtStoreWebsite.Services
+namespace ShirtStoreWebsite.Services;
+
+public interface IShirtRepository
 {
-    public interface IShirtRepository
-    {
-        IEnumerable<Shirt> GetShirts();
-        bool AddShirt(Shirt shirt);
-        bool RemoveShirt(int id);
-    }
+    IEnumerable<Shirt> GetShirts();
+    bool AddShirt(Shirt shirt);
+    bool RemoveShirt(int id);
 }
+

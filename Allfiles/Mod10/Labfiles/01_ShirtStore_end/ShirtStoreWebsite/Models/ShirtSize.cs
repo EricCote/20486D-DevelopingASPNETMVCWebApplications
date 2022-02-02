@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿namespace ShirtStoreWebsite.Models;
 
-namespace ShirtStoreWebsite.Models
+public enum ShirtSize
 {
-    public enum ShirtSize
-    {
-        XS,
-        S,
-        M,
-        L,
-        XL,
-        XXL
-    }
+    XS,
+    S,
+    M,
+    L,
+    XL,
+    XXL
 }

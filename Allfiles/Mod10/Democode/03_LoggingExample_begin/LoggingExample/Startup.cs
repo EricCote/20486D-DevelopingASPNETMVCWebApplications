@@ -12,34 +12,34 @@ namespace LoggingExample
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc();
-            services.AddSingleton<ICounter, Counter>();
-            services.AddSingleton<IDivisionCalculator, DivisionCalculator>();
-        }
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddMvc();
+        //     services.AddSingleton<ICounter, Counter>();
+        //     services.AddSingleton<IDivisionCalculator, DivisionCalculator>();
+        // }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/error.html");
-            }
+        // public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        // {
+        //     if (env.IsDevelopment())
+        //     {
+        //         app.UseDeveloperExceptionPage();
+        //     }
+        //     else
+        //     {
+        //         app.UseExceptionHandler("/error.html");
+        //     }
 
-            app.UseStaticFiles();
+        //     app.UseStaticFiles();
 
-            app.UseMvcWithDefaultRoute();
+        //     app.UseMvcWithDefaultRoute();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "LoggingExampleRoute",
-                    template: "{controller}/{action}/{id?}");
-            });
-        }
+        //     app.UseMvc(routes =>
+        //     {
+        //         routes.MapRoute(
+        //             name: "LoggingExampleRoute",
+        //             template: "{controller}/{action}/{id?}");
+        //     });
+        // }
     }
 }

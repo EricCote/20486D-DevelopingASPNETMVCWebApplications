@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LoggingExample.Models;
+﻿using LoggingExample.Models;
 
-namespace LoggingExample.Services
+namespace LoggingExample.Services;
+
+public interface IDivisionCalculator
 {
-    public interface IDivisionCalculator
-    {
-        DivisionResult GetDividedNumbers(int number);
-    }
+    DivisionResult GetDividedNumbers(int number);
 }

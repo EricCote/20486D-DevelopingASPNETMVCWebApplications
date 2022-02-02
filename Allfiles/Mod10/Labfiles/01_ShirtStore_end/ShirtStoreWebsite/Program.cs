@@ -1,43 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.DependencyInjection;
-using ShirtStoreWebsite.Data;
+﻿using ShirtStoreWebsite.Data;
+using ShirtStoreWebsite.Services;
+using Microsoft.EntityFrameworkCore;
 
-namespace ShirtStoreWebsite
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.ConfigureLogging(logging =>
 {
-    public class Program
+    var config = builder.Configuration.GetSection("Logging");
+
+    logging.ClearProviders();
+
+    if (builder.Environment.IsDevelopment())
     {
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().Run();
-        }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-            .ConfigureLogging((hostingContext, logging) =>
-            {
-                var env = hostingContext.HostingEnvironment;
-                var config = hostingContext.Configuration.GetSection("Logging");
-
-                logging.ClearProviders();
-
-                if (env.IsDevelopment())
-                {
-                    logging.AddConfiguration(config);
-                    logging.AddConsole();
-                }
-                else
-                {
-                    logging.AddFile(config);
-                }
-            })
-                .UseStartup<Startup>();
+        logging.AddConfiguration(config);
+        logging.AddConsole();
     }
+    else
+    {
+        logging.AddFile(config);
+    }
+
+});
+
+builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<ShirtContext>(options =>
+  options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IShirtRepository, ShirtRepository>();
+
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
 }
+else
+{
+    app.UseExceptionHandler("/error.html");
+}
+
+
+using (var scope = app.Services.CreateScope())
+{
+    var shirtContext = scope.ServiceProvider.GetRequiredService<ShirtContext>();
+    shirtContext.Database.EnsureDeleted();
+    shirtContext.Database.EnsureCreated();
+}
+
+app.UseStaticFiles();
+app.UseRouting();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Shirt}/{action=Index}/{id?}");
+
+app.Run();
+
+

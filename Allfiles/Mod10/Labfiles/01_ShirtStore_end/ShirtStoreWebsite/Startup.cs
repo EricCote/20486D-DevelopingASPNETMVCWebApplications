@@ -15,44 +15,44 @@ namespace ShirtStoreWebsite
 {
     public class Startup
     {
-        private IConfiguration _configuration;
+        // private IConfiguration _configuration;
 
-        public Startup(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
+        // public Startup(IConfiguration configuration)
+        // {
+        //     _configuration = configuration;
+        // }
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddDbContext<ShirtContext>(options =>
-                 options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddDbContext<ShirtContext>(options =>
+        //          options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped<IShirtRepository, ShirtRepository>();
+        //     services.AddScoped<IShirtRepository, ShirtRepository>();
 
-            services.AddMvc();
-        }
+        //     services.AddMvc();
+        // }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ShirtContext shirtContext)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/error.html");
-            }
+        // public void Configure(IApplicationBuilder app, IHostingEnvironment env, ShirtContext shirtContext)
+        // {
+        //     if (env.IsDevelopment())
+        //     {
+        //         app.UseDeveloperExceptionPage();
+        //     }
+        //     else
+        //     {
+        //         app.UseExceptionHandler("/error.html");
+        //     }
 
-            shirtContext.Database.EnsureDeleted();
-            shirtContext.Database.EnsureCreated();
+        //     shirtContext.Database.EnsureDeleted();
+        //     shirtContext.Database.EnsureCreated();
 
-            app.UseStaticFiles();
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "defaultRoute",
-                    template: "{controller=Shirt}/{action=Index}/{id?}");
-            });
-        }
+        //     app.UseStaticFiles();
+        //     app.UseMvc(routes =>
+        //     {
+        //         routes.MapRoute(
+        //             name: "defaultRoute",
+        //             template: "{controller=Shirt}/{action=Index}/{id?}");
+        //     });
+        // }
     }
 }

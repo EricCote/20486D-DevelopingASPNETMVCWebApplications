@@ -1,24 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+﻿using ErrorHandlingExample.Services;
+using Microsoft.AspNetCore.Http.Extensions;
 
-namespace ErrorHandlingExample
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<ICounter, Counter>();
+builder.Services.AddSingleton<IDivisionCalculator, DivisionCalculator>();
+
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            BuildWebHost(args).Run();
-        }
-
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
-    }
+    app.UseDeveloperExceptionPage();
 }
+else
+{
+    app.UseExceptionHandler("/error.html");
+}
+
+app.UseStaticFiles();
+
+var cnt = app.Services.GetRequiredService<ICounter>();
+
+app.Use(async (context, next) =>
+{
+    cnt.IncrementRequestPathCount(context.Request.GetDisplayUrl());
+    await next.Invoke();
+});
+
+app.UseRouting();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();
+
+

@@ -14,33 +14,33 @@ namespace ShirtStoreWebsite
 {
     public class Startup
     {
-        private IConfiguration _configuration;
+        // private IConfiguration _configuration;
 
-        public Startup(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
+        // public Startup(IConfiguration configuration)
+        // {
+        //     _configuration = configuration;
+        // }
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddDbContext<ShirtContext>(options =>
-                 options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddDbContext<ShirtContext>(options =>
+        //          options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddMvc();
-        }
+        //     services.AddMvc();
+        // }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ShirtContext shirtContext)
-        {
-            shirtContext.Database.EnsureDeleted();
-            shirtContext.Database.EnsureCreated();
+        // public void Configure(IApplicationBuilder app, IHostingEnvironment env, ShirtContext shirtContext)
+        // {
+        //     shirtContext.Database.EnsureDeleted();
+        //     shirtContext.Database.EnsureCreated();
 
-            app.UseStaticFiles();
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "defaultRoute",
-                    template: "{controller=Shirt}/{action=Index}/{id?}");
-            });
-        }
+        //     app.UseStaticFiles();
+        //     app.UseMvc(routes =>
+        //     {
+        //         routes.MapRoute(
+        //             name: "defaultRoute",
+        //             template: "{controller=Shirt}/{action=Index}/{id?}");
+        //     });
+        // }
     }
 }

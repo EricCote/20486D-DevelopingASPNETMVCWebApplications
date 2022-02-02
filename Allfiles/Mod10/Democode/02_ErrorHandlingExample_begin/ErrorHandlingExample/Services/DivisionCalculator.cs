@@ -1,31 +1,26 @@
 ﻿using ErrorHandlingExample.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace ErrorHandlingExample.Services
+namespace ErrorHandlingExample.Services;
+
+public class DivisionCalculator : IDivisionCalculator
 {
-    public class DivisionCalculator : IDivisionCalculator
+    public DivisionResult GetDividedNumbers(int number)
     {
-        public DivisionResult GetDividedNumbers(int number)
+        DivisionResult divisionResult = new DivisionResult();
+
+        divisionResult.DividedNumber = number;
+        divisionResult.DividingNumbers = new List<int>();
+
+        for (int i = 0; i < (number / 2) + 1; i++)
         {
-            DivisionResult divisionResult = new DivisionResult();
-
-            divisionResult.DividedNumber = number;
-            divisionResult.DividingNumbers = new List<int>();
-
-            for (int i = 0; i < (number / 2) + 1; i++)
+            if (number % i == 0)
             {
-                if (number % i == 0)
-                {
-                    divisionResult.DividingNumbers.Add(i);
-                }
+                divisionResult.DividingNumbers.Add(i);
             }
-
-            divisionResult.DividingNumbers.Add(number);
-
-            return divisionResult;
         }
+
+        divisionResult.DividingNumbers.Add(number);
+
+        return divisionResult;
     }
 }

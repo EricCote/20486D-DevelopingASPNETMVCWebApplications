@@ -1,22 +1,24 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ShirtStoreWebsite.Models;
 
-namespace ShirtStoreWebsite.Tests
+namespace ShirtStoreWebsite.Tests;
+
+
+[TestClass]
+public class ShirtTest
 {
-    [TestClass]
-    public class ShirtTest
+    [TestMethod]
+    public void IsGetFormattedTaxedPriceReturnsCorrectly()
     {
-        [TestMethod]
-        public void IsGetFormattedTaxedPriceReturnsCorrectly()
+        Shirt shirt = new Shirt
         {
-            Shirt shirt = new Shirt
-            {
-                Price = 10F
-            };
+            Price = 10F,
+        //    Tax = 1.2F
+        };
 
-            string taxedPrice = shirt.GetFormattedTaxedPrice();
+        string taxedPrice = shirt.GetFormattedTaxedPrice();
 
-            Assert.AreEqual("$12.00", taxedPrice);
-        }
+        Assert.AreEqual("$12.00", taxedPrice);
     }
 }
+

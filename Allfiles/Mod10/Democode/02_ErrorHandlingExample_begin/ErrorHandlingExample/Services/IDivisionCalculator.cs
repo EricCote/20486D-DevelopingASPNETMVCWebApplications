@@ -1,13 +1,9 @@
 ﻿using ErrorHandlingExample.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace ErrorHandlingExample.Services
+namespace ErrorHandlingExample.Services;
+
+public interface IDivisionCalculator
 {
-    public interface IDivisionCalculator
-    {
-        DivisionResult GetDividedNumbers(int number);
-    }
+    DivisionResult GetDividedNumbers(int number);
 }
+

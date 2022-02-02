@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿namespace ShirtStoreWebsite.Models;
 
-namespace ShirtStoreWebsite.Models
+public enum ShirtColor
 {
-    public enum ShirtColor
-    {
-        White,
-        Black,
-        Gray,
-        Red,
-        Blue,
-        Green,
-        Yellow
-    }
+    White,
+    Black,
+    Gray,
+    Red,
+    Blue,
+    Green,
+    Yellow
 }
+
