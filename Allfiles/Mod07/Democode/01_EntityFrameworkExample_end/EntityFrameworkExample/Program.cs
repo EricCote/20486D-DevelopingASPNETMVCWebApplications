@@ -1,24 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+﻿using EntityFrameworkExample.Data;
+using Microsoft.EntityFrameworkCore;
 
-namespace EntityFrameworkExample
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<PersonContext>(options =>
+                  options.UseSqlite("Data Source=person.db"));
+
+
+var app = builder.Build();
+
+
+using(var scope = app.Services.CreateScope())
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().Run();
-        }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
-    }
+    var personContext = scope.ServiceProvider.GetRequiredService<PersonContext>();
+    personContext.Database.EnsureDeleted();
+    personContext.Database.EnsureCreated();
 }
+
+app.UseStaticFiles();
+
+app.UseRouting();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Person}/{action=Index}/{id?}");
+app.Run();
+

@@ -11,20 +11,20 @@ namespace EntityFrameworkExample
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc();
-        }
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddMvc();
+        // }
 
-        public void Configure(IApplicationBuilder app)
-        {
-            app.UseStaticFiles();
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "defaultRoute",
-                    template: "{controller=Person}/{action=Index}/{id?}");
-            });
-        }
+        // public void Configure(IApplicationBuilder app)
+        // {
+        //     app.UseStaticFiles();
+        //     app.UseMvc(routes =>
+        //     {
+        //         routes.MapRoute(
+        //             name: "defaultRoute",
+        //             template: "{controller=Person}/{action=Index}/{id?}");
+        //     });
+        // }
     }
 }

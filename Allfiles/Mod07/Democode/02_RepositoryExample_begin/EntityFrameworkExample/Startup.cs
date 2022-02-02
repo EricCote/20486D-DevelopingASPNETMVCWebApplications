@@ -12,27 +12,27 @@ namespace EntityFrameworkExample
 {
     public class Startup
     {
-        private IConfiguration _configuration;
+        // private IConfiguration _configuration;
 
-        public Startup(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
+        // public Startup(IConfiguration configuration)
+        // {
+        //     _configuration = configuration;
+        // }
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc();
-        }
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddMvc();
+        // }
 
-        public void Configure(IApplicationBuilder app)
-        {
-            app.UseStaticFiles();
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "defaultRoute",
-                    template: "{controller=Person}/{action=Index}/{id?}");
-            });
-        }
+        // public void Configure(IApplicationBuilder app)
+        // {
+        //     app.UseStaticFiles();
+        //     app.UseMvc(routes =>
+        //     {
+        //         routes.MapRoute(
+        //             name: "defaultRoute",
+        //             template: "{controller=Person}/{action=Index}/{id?}");
+        //     });
+        // }
     }
 }

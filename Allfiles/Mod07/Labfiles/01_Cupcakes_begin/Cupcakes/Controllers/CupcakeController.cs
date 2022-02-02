@@ -1,53 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Cupcakes.Models;
 
-namespace Cupcakes.Controllers
+namespace Cupcakes.Controllers;
+
+public class CupcakeController : Controller
 {
-    public class CupcakeController : Controller
+    public IActionResult Index()
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        return View();
+    }
 
-        public IActionResult GetImage(int id)
+    public IActionResult GetImage(int id)
+    {
+        Cupcake requestedCupcake = _repository.GetCupcakeById(id);
+        if (requestedCupcake != null)
         {
-            Cupcake requestedCupcake = _repository.GetCupcakeById(id);
-            if (requestedCupcake != null)
+            string webRootpath = _environment.WebRootPath;
+            string folderPath = "\\images\\";
+            string fullPath = webRootpath + folderPath + requestedCupcake.ImageName;
+            if (System.IO.File.Exists(fullPath))
             {
-                string webRootpath = _environment.WebRootPath;
-                string folderPath = "\\images\\";
-                string fullPath = webRootpath + folderPath + requestedCupcake.ImageName;
-                if (System.IO.File.Exists(fullPath))
+                FileStream fileOnDisk = new FileStream(fullPath, FileMode.Open);
+                byte[] fileBytes;
+                using (BinaryReader br = new BinaryReader(fileOnDisk))
                 {
-                    FileStream fileOnDisk = new FileStream(fullPath, FileMode.Open);
-                    byte[] fileBytes;
-                    using (BinaryReader br = new BinaryReader(fileOnDisk))
-                    {
-                        fileBytes = br.ReadBytes((int)fileOnDisk.Length);
-                    }
-                    return File(fileBytes, requestedCupcake.ImageMimeType);
+                    fileBytes = br.ReadBytes((int)fileOnDisk.Length);
                 }
-                else
-                {
-                    if (requestedCupcake.PhotoFile.Length > 0)
-                    {
-                        return File(requestedCupcake.PhotoFile, requestedCupcake.ImageMimeType);
-                    }
-                    else
-                    {
-                        return NotFound();
-                    }
-                }
+                return File(fileBytes, requestedCupcake.ImageMimeType);
             }
             else
             {
-                return NotFound();
+                if (requestedCupcake.PhotoFile.Length > 0)
+                {
+                    return File(requestedCupcake.PhotoFile, requestedCupcake.ImageMimeType);
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
+        }
+        else
+        {
+            return NotFound();
         }
     }
 }

@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿namespace Cupcakes.Models;
 
-namespace Cupcakes.Models
+public enum CupcakeType
 {
-    public enum CupcakeType
-    {
-        Birthday,
-        Turquoise,
-        Chocolate,
-        Strawberry
-    }
+    Birthday,
+    Turquoise,
+    Chocolate,
+    Strawberry
 }

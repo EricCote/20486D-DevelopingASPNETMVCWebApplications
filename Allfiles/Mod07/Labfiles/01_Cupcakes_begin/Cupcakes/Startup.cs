@@ -11,23 +11,23 @@ namespace Cupcakes
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc();
-        }
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddMvc();
+        // }
 
-        public void Configure(IApplicationBuilder app)
-        {
-            app.UseStaticFiles();
+        // public void Configure(IApplicationBuilder app)
+        // {
+        //     app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "CupcakeRoute",
-                    template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "Cupcake", action = "Index" },
-                    constraints: new { id = "[0-9]+" });
-            });
-        }
+        //     app.UseMvc(routes =>
+        //     {
+        //         routes.MapRoute(
+        //             name: "CupcakeRoute",
+        //             template: "{controller}/{action}/{id?}",
+        //             defaults: new { controller = "Cupcake", action = "Index" },
+        //             constraints: new { id = "[0-9]+" });
+        //     });
+        // }
     }
 }

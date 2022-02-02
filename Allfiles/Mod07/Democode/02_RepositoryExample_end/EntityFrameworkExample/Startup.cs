@@ -16,35 +16,35 @@ namespace EntityFrameworkExample
 {
     public class Startup
     {
-        private IConfiguration _configuration;
+        // private IConfiguration _configuration;
 
-        public Startup(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
+        // public Startup(IConfiguration configuration)
+        // {
+        //     _configuration = configuration;
+        // }
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddDbContext<PersonContext>(options =>
-                 options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddDbContext<PersonContext>(options =>
+        //          options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped<IRepository, MyRepository>();
+        //     services.AddScoped<IRepository, MyRepository>();
 
-            services.AddMvc();
-        }
+        //     services.AddMvc();
+        // }
 
-        public void Configure(IApplicationBuilder app, PersonContext personContext)
-        {
-            personContext.Database.EnsureDeleted();
-            personContext.Database.EnsureCreated();
+        // public void Configure(IApplicationBuilder app, PersonContext personContext)
+        // {
+        //     personContext.Database.EnsureDeleted();
+        //     personContext.Database.EnsureCreated();
 
-            app.UseStaticFiles();
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "defaultRoute",
-                    template: "{controller=Person}/{action=Index}/{id?}");
-            });
-        }
+        //     app.UseStaticFiles();
+        //     app.UseMvc(routes =>
+        //     {
+        //         routes.MapRoute(
+        //             name: "defaultRoute",
+        //             template: "{controller=Person}/{action=Index}/{id?}");
+        //     });
+        // }
     }
 }

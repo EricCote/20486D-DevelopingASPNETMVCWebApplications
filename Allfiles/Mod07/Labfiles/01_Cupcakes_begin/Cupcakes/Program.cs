@@ -1,24 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+﻿var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllersWithViews();
 
-namespace Cupcakes
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().Run();
-        }
+var app = builder.Build();
+app.UseStaticFiles();
+app.UseRouting();
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
-    }
-}
+app.MapControllerRoute(
+    name: "cupcakeRoute",
+    pattern: "{controller}/{action}/{id?}",
+    defaults: new { controller = "Cupcake", action = "Index" },
+    constraints: new { id = "[0-9]+" });
+
+app.Run();
+
+

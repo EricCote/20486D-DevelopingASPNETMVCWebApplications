@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿namespace EntityFrameworkExample.Data;
 
-namespace EntityFrameworkExample.Data
+public class PersonContext
 {
-    public class PersonContext
-    {
-    }
 }

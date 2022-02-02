@@ -15,35 +15,35 @@ namespace Cupcakes
 {
     public class Startup
     {
-        private IConfiguration _configuration;
+        // private IConfiguration _configuration;
 
-        public Startup(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
+        // public Startup(IConfiguration configuration)
+        // {
+        //     _configuration = configuration;
+        // }
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddTransient<ICupcakeRepository, CupcakeRepository>();
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddTransient<ICupcakeRepository, CupcakeRepository>();
 
-            services.AddDbContext<CupcakeContext>(options =>
-                 options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
+        //     services.AddDbContext<CupcakeContext>(options =>
+        //          options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddMvc();
-        }
+        //     services.AddMvc();
+        // }
 
-        public void Configure(IApplicationBuilder app, CupcakeContext cupcakeContext)
-        {
-            app.UseStaticFiles();
+        // public void Configure(IApplicationBuilder app, CupcakeContext cupcakeContext)
+        // {
+        //     app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "CupcakeRoute",
-                    template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "Cupcake", action = "Index" },
-                    constraints: new { id = "[0-9]+" });
-            });
-        }
+        //     app.UseMvc(routes =>
+        //     {
+        //         routes.MapRoute(
+        //             name: "CupcakeRoute",
+        //             template: "{controller}/{action}/{id?}",
+        //             defaults: new { controller = "Cupcake", action = "Index" },
+        //             constraints: new { id = "[0-9]+" });
+        //     });
+        // }
     }
 }
