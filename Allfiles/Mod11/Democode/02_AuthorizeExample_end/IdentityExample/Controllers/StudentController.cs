@@ -1,33 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using IdentityExample.Data;
 
+namespace IdentityExample.Controllers;
 
-namespace IdentityExample.Controllers
+public class StudentController : Controller
 {
-    public class StudentController : Controller
+    private StudentContext _studentContext;
+
+    public StudentController(StudentContext studentContext)
     {
-        private StudentContext _studentContext;
+        _studentContext = studentContext;
+    }
 
-        public StudentController(StudentContext studentContext)
-        {
-            _studentContext = studentContext;
-        }
+    [Authorize]
+    public IActionResult Index()
+    {
+        return View();
+    }
 
-        [Authorize]
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        [AllowAnonymous]
-        public IActionResult CourseDetails()
-        {
-            return View(_studentContext.Courses.ToList());
-        }
+    [AllowAnonymous]
+    public IActionResult CourseDetails()
+    {
+        return View(_studentContext.Courses.ToList());
     }
 }

@@ -1,86 +1,81 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using IdentityExample.Models;
 using IdentityExample.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 
-namespace IdentityExample.Controllers
+namespace IdentityExample.Controllers;
+
+public class AccountController : Controller
 {
-    public class AccountController : Controller
+    private SignInManager<Student> _signInManager;
+    private UserManager<Student> _userManager;
+
+    public AccountController(SignInManager<Student> signInManager, UserManager<Student> userManager)
     {
-        private SignInManager<Student> _signInManager;
-        private UserManager<Student> _userManager;
+        _signInManager = signInManager;
+        _userManager = userManager;
+    }
 
-        public AccountController(SignInManager<Student> signInManager, UserManager<Student> userManager)
+    public IActionResult Login()
+    {
+        if (this.User.Identity.IsAuthenticated)
         {
-            _signInManager = signInManager;
-            _userManager = userManager;
+            return RedirectToAction("Index", "Student");
         }
+        return View();
+    }
 
-        public IActionResult Login()
+    [HttpPost]
+    public async Task<IActionResult> Login(LoginViewModel loginModel)
+    {
+        if (ModelState.IsValid)
         {
-            if (this.User.Identity.IsAuthenticated)
+            var result = await _signInManager.PasswordSignInAsync(loginModel.UserName, loginModel.Password, loginModel.RememberMe, false);
+            if (result.Succeeded)
             {
                 return RedirectToAction("Index", "Student");
             }
-            return View();
         }
+        ModelState.AddModelError("", "Faild to Login");
+        return View();
+    }
 
-        [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel loginModel)
+    public async Task<IActionResult> Logout()
+    {
+        await _signInManager.SignOutAsync();
+        return RedirectToAction("Index", "Student");
+    }
+
+    public IActionResult Register()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Register(RegisterViewModel registerModel)
+    {
+        if (ModelState.IsValid)
         {
-            if (ModelState.IsValid)
+            Student student = new Student
             {
-                var result = await _signInManager.PasswordSignInAsync(loginModel.UserName, loginModel.Password, loginModel.RememberMe, false);
-                if (result.Succeeded)
-                {
-                   return RedirectToAction("Index", "Student");
-                }
-            }
-            ModelState.AddModelError("", "Faild to Login");
-            return View();
-        }
+                FirstName = registerModel.FirstName,
+                LastName = registerModel.LastName,
+                UserName = registerModel.UserName,
+                PhoneNumber = registerModel.PhoneNumber,
+                Email = registerModel.Email
+            };
 
-        public async Task<IActionResult> Logout()
-        {
-            await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Student");
-        }
-
-        public IActionResult Register()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel registerModel)
-        {
-            if (ModelState.IsValid)
+            var result = await _userManager.CreateAsync(student, registerModel.Password);
+            if (result.Succeeded)
             {
-                Student student = new Student
-                {
-                    FirstName = registerModel.FirstName,
-                    LastName = registerModel.LastName,
-                    UserName = registerModel.UserName,
-                    PhoneNumber = registerModel.PhoneNumber,
-                    Email = registerModel.Email
-                };
-
-                var result = await _userManager.CreateAsync(student, registerModel.Password);
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Login", "Account");
-                }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
+                return RedirectToAction("Login", "Account");
             }
-            return View();
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error.Description);
+            }
         }
+        return View();
     }
 }

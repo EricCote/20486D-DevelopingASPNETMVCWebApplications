@@ -14,43 +14,43 @@ namespace IdentityExample
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddDefaultIdentity<Student>(options =>
-           {
-               options.Password.RequireDigit = true;
-               options.Password.RequiredLength = 7;
-               options.Password.RequireUppercase = true;
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddDefaultIdentity<Student>(options =>
+        //    {
+        //        options.Password.RequireDigit = true;
+        //        options.Password.RequiredLength = 7;
+        //        options.Password.RequireUppercase = true;
 
-               options.User.RequireUniqueEmail = true;
-           })
-            .AddEntityFrameworkStores<StudentContext>();
+        //        options.User.RequireUniqueEmail = true;
+        //    })
+        //     .AddEntityFrameworkStores<StudentContext>();
 
-            services.AddDbContext<StudentContext>(options =>
-                  options.UseSqlite("Data Source=student.db"));
+        //     services.AddDbContext<StudentContext>(options =>
+        //           options.UseSqlite("Data Source=student.db"));
 
-            services.AddMvc();
-        }
+        //     services.AddMvc();
+        // }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, StudentContext studentContext)
-        {
-            studentContext.Database.EnsureDeleted();
-            studentContext.Database.EnsureCreated();
+        // public void Configure(IApplicationBuilder app, IHostingEnvironment env, StudentContext studentContext)
+        // {
+        //     studentContext.Database.EnsureDeleted();
+        //     studentContext.Database.EnsureCreated();
 
-            app.UseStaticFiles();
+        //     app.UseStaticFiles();
 
-            app.UseAuthentication();
+        //     app.UseAuthentication();
 
-            app.UseNodeModules(env.ContentRootPath);
+        //     app.UseNodeModules(env.ContentRootPath);
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "StudentRoute",
-                    template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "Student", action = "Index" },
-                    constraints: new { id = "[0-9]+" });
-            });
-        }
+        //     app.UseMvc(routes =>
+        //     {
+        //         routes.MapRoute(
+        //             name: "StudentRoute",
+        //             template: "{controller}/{action}/{id?}",
+        //             defaults: new { controller = "Student", action = "Index" },
+        //             constraints: new { id = "[0-9]+" });
+        //     });
+        // }
     }
 }

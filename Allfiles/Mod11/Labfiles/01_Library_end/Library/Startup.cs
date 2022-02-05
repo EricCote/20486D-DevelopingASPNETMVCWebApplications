@@ -18,55 +18,55 @@ namespace Library
 {
     public class Startup
     {
-        private IConfiguration _configuration;
+        // private IConfiguration _configuration;
 
-        public Startup(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
+        // public Startup(IConfiguration configuration)
+        // {
+        //     _configuration = configuration;
+        // }
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddIdentity<User, IdentityRole>(options =>
-            {
-                options.Password.RequireDigit = true;
-                options.Password.RequiredLength = 7;
-                options.Password.RequireUppercase = true;
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddIdentity<User, IdentityRole>(options =>
+        //     {
+        //         options.Password.RequireDigit = true;
+        //         options.Password.RequiredLength = 7;
+        //         options.Password.RequireUppercase = true;
 
-                options.User.RequireUniqueEmail = true;
-            })
-            .AddEntityFrameworkStores<LibraryContext>();
+        //         options.User.RequireUniqueEmail = true;
+        //     })
+        //     .AddEntityFrameworkStores<LibraryContext>();
 
-            services.AddDbContext<LibraryContext>(options =>
-                  options.UseSqlite("Data Source=library.db"));
+        //     services.AddDbContext<LibraryContext>(options =>
+        //           options.UseSqlite("Data Source=library.db"));
 
-            services.AddMvc();
+        //     services.AddMvc();
 
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("RequireEmail", policy => policy.RequireClaim(ClaimTypes.Email));
-            });
-        }
+        //     services.AddAuthorization(options =>
+        //     {
+        //         options.AddPolicy("RequireEmail", policy => policy.RequireClaim(ClaimTypes.Email));
+        //     });
+        // }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, LibraryContext libraryContext)
-        {
-            libraryContext.Database.EnsureDeleted();
-            libraryContext.Database.EnsureCreated();
+        // public void Configure(IApplicationBuilder app, IHostingEnvironment env, LibraryContext libraryContext)
+        // {
+        //     libraryContext.Database.EnsureDeleted();
+        //     libraryContext.Database.EnsureCreated();
 
-            app.UseStaticFiles();
+        //     app.UseStaticFiles();
 
-            app.UseAuthentication();
+        //     app.UseAuthentication();
 
-            app.UseNodeModules(env.ContentRootPath);
+        //     app.UseNodeModules(env.ContentRootPath);
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "LibraryRoute",
-                    template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "Library", action = "Index" },
-                    constraints: new { id = "[0-9]+" });
-            });
-        }
+        //     app.UseMvc(routes =>
+        //     {
+        //         routes.MapRoute(
+        //             name: "LibraryRoute",
+        //             template: "{controller}/{action}/{id?}",
+        //             defaults: new { controller = "Library", action = "Index" },
+        //             constraints: new { id = "[0-9]+" });
+        //     });
+        // }
     }
 }

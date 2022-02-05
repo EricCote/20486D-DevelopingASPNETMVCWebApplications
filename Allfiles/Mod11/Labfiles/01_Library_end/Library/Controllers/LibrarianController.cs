@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Library.Data;
+﻿using Library.Data;
 using Library.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,67 +6,66 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Library.Controllers
+namespace Library.Controllers;
+
+[Authorize(Policy = "RequireEmail")]
+[Authorize(Roles = "Administrator")]
+public class LibrarianController : Controller
 {
-    [Authorize(Policy = "RequireEmail")]
-    [Authorize(Roles = "Administrator")]
-    public class LibrarianController : Controller
+    private LibraryContext _context;
+
+    public LibrarianController(LibraryContext libraryContext)
     {
-        private LibraryContext _context;
+        _context = libraryContext;
+    }
 
-        public LibrarianController(LibraryContext libraryContext)
-        {
-            _context = libraryContext;
-        }
+    public IActionResult Index()
+    {
+        return View();
+    }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+    public IActionResult AddBook()
+    {
+        PopulateGenerDropDownList();
+        return View();
+    }
 
-        public IActionResult AddBook()
+    [HttpPost, ActionName("AddBook")]
+    [ValidateAntiForgeryToken]
+    public IActionResult AddBookPost(Book book)
+    {
+        if (ModelState.IsValid)
         {
-            PopulateGenerDropDownList();
-            return View();
-        }
-
-        [HttpPost, ActionName("AddBook")]
-        [ValidateAntiForgeryToken]
-        public IActionResult AddBookPost(Book book)
-        {
-            if (ModelState.IsValid)
+            if (book.PhotoAvatar != null && book.PhotoAvatar.Length > 0)
             {
-                if (book.PhotoAvatar != null && book.PhotoAvatar.Length > 0)
+                book.ImageMimeType = book.PhotoAvatar.ContentType;
+                book.ImageName = Path.GetFileName(book.PhotoAvatar.FileName);
+                using (var memoryStream = new MemoryStream())
                 {
-                    book.ImageMimeType = book.PhotoAvatar.ContentType;
-                    book.ImageName = Path.GetFileName(book.PhotoAvatar.FileName);
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        book.PhotoAvatar.CopyTo(memoryStream);
-                        book.PhotoFile = memoryStream.ToArray();
-                    }
-                    book.Available = true;
-                    _context.Add(book);
-                    _context.SaveChanges();
+                    book.PhotoAvatar.CopyTo(memoryStream);
+                    book.PhotoFile = memoryStream.ToArray();
                 }
-                return RedirectToAction(nameof(ThankYou));
+                book.Available = true;
+                _context.Add(book);
+                _context.SaveChanges();
             }
-            PopulateGenerDropDownList(book.Genre.Id);
-            return View();
+            return RedirectToAction(nameof(ThankYou));
         }
+        PopulateGenerDropDownList(book.Genre.Id);
+        return View();
+    }
 
-        public IActionResult ThankYou()
-        {
-            return View();
-        }
+    public IActionResult ThankYou()
+    {
+        return View();
+    }
 
-        private void PopulateGenerDropDownList(int? selectedGener = null)
-        {
-            var genres = from b in _context.Genres
-                        orderby b.Name
-                        select b;
+    private void PopulateGenerDropDownList(int? selectedGener = null)
+    {
+        var genres = from b in _context.Genres
+                     orderby b.Name
+                     select b;
 
-            ViewBag.GenerList = new SelectList(genres.AsNoTracking(), "Id", "Name", selectedGener);
-        }
+        ViewBag.GenerList = new SelectList(genres.AsNoTracking(), "Id", "Name", selectedGener);
     }
 }

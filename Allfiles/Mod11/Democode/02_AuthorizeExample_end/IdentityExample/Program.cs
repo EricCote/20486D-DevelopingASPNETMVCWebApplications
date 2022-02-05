@@ -1,24 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using IdentityExample.Data;
+using IdentityExample.Models;
+using IdentityExample.Middleware;
 
-namespace IdentityExample
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddDbContext<StudentContext>(options =>
+    options.UseSqlite("Data Source=student.db"));
+
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddIdentity<Student, IdentityRole>(options =>
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().Run();
-        }
+    options.SignIn.RequireConfirmedAccount = false;
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 7;
+    options.Password.RequireUppercase = true;
+    options.User.RequireUniqueEmail = true;
+}).AddEntityFrameworkStores<StudentContext>();
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
-    }
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var studentContext = scope.ServiceProvider.GetRequiredService<StudentContext>();
+    studentContext.Database.EnsureDeleted();
+    studentContext.Database.EnsureCreated();
 }
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    //app.UseMigrationsEndPoint();
+}
+else
+{
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    //app.UseHsts();
+}
+
+//app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.UseNodeModules(app.Environment.ContentRootPath);
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action}/{id?}",
+    defaults: new { controller = "Student", action = "Index" },
+    constraints: new { id = "[0-9]+" });
+
+app.Run();

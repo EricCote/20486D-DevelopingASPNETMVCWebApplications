@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace IdentityExample.Models
+namespace IdentityExample.Models;
+
+public class Course
 {
-    public class Course
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        [Display(Name = "Course Name")]
-        public string Name { get; set; }
-    }
+    [Display(Name = "Course Name")]
+    public string Name { get; set; }
 }

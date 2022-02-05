@@ -11,15 +11,15 @@ namespace CrossSiteRequestForgeryAttack
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc();
-        }
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddMvc();
+        // }
 
-        public void Configure(IApplicationBuilder app)
-        {
-            app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
-        }
+        // public void Configure(IApplicationBuilder app)
+        // {
+        //     app.UseStaticFiles();
+        //     app.UseMvcWithDefaultRoute();
+        // }
     }
 }
