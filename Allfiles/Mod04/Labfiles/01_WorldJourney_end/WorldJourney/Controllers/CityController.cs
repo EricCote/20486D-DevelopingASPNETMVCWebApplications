@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using WorldJourney.Models;
 using WorldJourney.Filters;
