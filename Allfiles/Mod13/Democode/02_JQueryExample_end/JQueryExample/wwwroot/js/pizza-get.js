@@ -3,7 +3,7 @@
         e.preventDefault();
         $.ajax({
             type: "GET",
-            url: "http://localhost:59216/api/Pizza/1",
+            url: "/api/Pizza/1",
             contentType: "application/json; charset=utf-8",
             dataType: "json"
         }).done(function (response) {

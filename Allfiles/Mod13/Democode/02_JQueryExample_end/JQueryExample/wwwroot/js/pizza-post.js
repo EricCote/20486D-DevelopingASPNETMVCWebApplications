@@ -3,7 +3,7 @@
         e.preventDefault();
         $.ajax({
             type: "POST",
-            url: "http://localhost:59216/api/Pizza",
+            url: "/api/Pizza",
             data: JSON.stringify({
                 toppings: "pineapple",
                 price: 10.99

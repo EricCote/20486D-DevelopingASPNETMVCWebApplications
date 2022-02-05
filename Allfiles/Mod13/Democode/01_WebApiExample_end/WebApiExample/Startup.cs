@@ -12,16 +12,16 @@ using Microsoft.Extensions.Options;
 
 namespace WebApiExample
 {
-    public class Startup
-    {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc().AddXmlSerializerFormatters();
-        }
+    // public class Startup
+    // {
+    //     public void ConfigureServices(IServiceCollection services)
+    //     {
+    //         services.AddMvc().AddXmlSerializerFormatters();
+    //     }
 
-        public void Configure(IApplicationBuilder app)
-        {
-            app.UseMvc();
-        }
-    }
+    //     public void Configure(IApplicationBuilder app)
+    //     {
+    //         app.UseMvc();
+    //     }
+    // }
 }
