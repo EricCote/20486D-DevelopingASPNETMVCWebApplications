@@ -14,38 +14,38 @@ namespace PhotoSharingSample
 {
     public class Startup
     {
-        private IConfiguration _configuration;
+        // private IConfiguration _configuration;
 
-        public Startup(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
+        // public Startup(IConfiguration configuration)
+        // {
+        //     _configuration = configuration;
+        // }
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            //services.AddMvc();  //Old way: This wraps "controllers with views" AND Razor Pages
-            services.AddControllersWithViews(); // no Razor pages support
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     //services.AddMvc();  //Old way: This wraps "controllers with views" AND Razor Pages
+        //     services.AddControllersWithViews(); // no Razor pages support
 
-            services.AddDbContext<PhotoSharingDB>(options =>
-                   options.UseSqlServer(_configuration.GetConnectionString("PhotoSharingContext")));
-        }
+        //     services.AddDbContext<PhotoSharingDB>(options =>
+        //            options.UseSqlServer(_configuration.GetConnectionString("PhotoSharingContext")));
+        // }
 
-        public void Configure(IApplicationBuilder app, PhotoSharingDB photoSharingDB)
-        {
-            photoSharingDB.Database.EnsureDeleted();
-            photoSharingDB.Database.EnsureCreated();
+        // public void Configure(IApplicationBuilder app, PhotoSharingDB photoSharingDB)
+        // {
+        //     photoSharingDB.Database.EnsureDeleted();
+        //     photoSharingDB.Database.EnsureCreated();
 
-            app.UseStaticFiles();
+        //     app.UseStaticFiles();
 
-            app.UseRouting();
+        //     app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
-            {
-                //endpoints.MapDefaultControllerRoute();     //Old way:  adds the "standard" default route
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
-        }
+        //     app.UseEndpoints(endpoints =>
+        //     {
+        //         //endpoints.MapDefaultControllerRoute();     //Old way:  adds the "standard" default route
+        //         endpoints.MapControllerRoute(
+        //             name: "default",
+        //             pattern: "{controller=Home}/{action=Index}/{id?}");
+        //     });
+        // }
     }
 }
