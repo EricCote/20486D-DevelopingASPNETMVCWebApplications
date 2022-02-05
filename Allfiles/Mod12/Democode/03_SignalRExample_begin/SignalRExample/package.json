@@ -3,7 +3,7 @@
   "name": "asp.net",
   "private": true,
   "dependencies": {
-    "jquery": "3.5.0"
+    "jquery": "^3.6.0"
   },
   "devDependencies": {
   }

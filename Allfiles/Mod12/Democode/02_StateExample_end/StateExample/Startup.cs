@@ -11,17 +11,17 @@ namespace StateExample
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddSession();
-            services.AddMvc();
-        }
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddSession();
+        //     services.AddMvc();
+        // }
         
-        public void Configure(IApplicationBuilder app)
-        {
-            app.UseSession();
-            app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
-        }
+        // public void Configure(IApplicationBuilder app)
+        // {
+        //     app.UseSession();
+        //     app.UseStaticFiles();
+        //     app.UseMvcWithDefaultRoute();
+        // }
     }
 }

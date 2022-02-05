@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using ElectricStore.Data;
 using ElectricStore.Models;
 using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace ElectricStore.Controllers
 {
@@ -25,7 +25,7 @@ namespace ElectricStore.Controllers
         {
             if (!string.IsNullOrEmpty(HttpContext.Session.GetString("CustomerFirstName")) && !string.IsNullOrEmpty(HttpContext.Session.GetString("CustomerProducts")))
             {
-                List<int> productsListId = JsonConvert.DeserializeObject<List<int>>(HttpContext.Session.GetString("CustomerProducts"));
+                List<int> productsListId = JsonSerializer.Deserialize<List<int>>(HttpContext.Session.GetString("CustomerProducts"));
                 products = new List<Product>();
                 foreach (var item in productsListId)
                 {

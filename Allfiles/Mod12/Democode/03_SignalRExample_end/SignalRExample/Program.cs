@@ -1,24 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+﻿using SignalRExample.Services;
+using SignalRExample.Middleware;
+using SignalRExample.Hubs;
 
-namespace SignalRExample
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().Run();
-        }
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<ISquareManager, SquareManager>();
+builder.Services.AddSignalR();
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
-    }
-}
+var app = builder.Build();
+app.UseStaticFiles();
+app.UseNodeModules(app.Environment.ContentRootPath);
+
+
+
+app.UseRouting();
+
+app.MapHub<SquaresHub>("/squareshub");
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Square}/{action=Index}/{id?}");
+    
+app.Run();
+
+

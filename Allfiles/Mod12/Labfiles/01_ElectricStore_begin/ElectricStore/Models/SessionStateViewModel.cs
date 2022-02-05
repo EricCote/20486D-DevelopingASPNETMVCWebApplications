@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿namespace ElectricStore.Models;
 
-namespace ElectricStore.Models
+public class SessionStateViewModel
 {
-    public class SessionStateViewModel
-    {
-        public string CustomerName { get; set; }
-        public List<Product> SelectedProducts { get; set; }
-    }
+    public string CustomerName { get; set; }
+    public List<Product> SelectedProducts { get; set; }
 }

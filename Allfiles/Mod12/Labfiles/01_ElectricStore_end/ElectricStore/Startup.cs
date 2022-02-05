@@ -14,45 +14,45 @@ namespace ElectricStore
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddDbContext<StoreContext>(options =>
-                 options.UseSqlite("Data Source=electricStore.db"));
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddDbContext<StoreContext>(options =>
+        //          options.UseSqlite("Data Source=electricStore.db"));
 
-            services.AddSession(options =>
-            {
-                options.IdleTimeout = TimeSpan.FromSeconds(60);
-            });
+        //     services.AddSession(options =>
+        //     {
+        //         options.IdleTimeout = TimeSpan.FromSeconds(60);
+        //     });
 
-            services.AddSignalR();
+        //     services.AddSignalR();
 
-            services.AddMvc();
-        }
+        //     services.AddMvc();
+        // }
 
-        public void Configure(IApplicationBuilder app, StoreContext storeContext, IHostingEnvironment environment)
-        {
-            storeContext.Database.EnsureDeleted();
-            storeContext.Database.EnsureCreated();
+        // public void Configure(IApplicationBuilder app, StoreContext storeContext, IHostingEnvironment environment)
+        // {
+        //     storeContext.Database.EnsureDeleted();
+        //     storeContext.Database.EnsureCreated();
 
-            app.UseStaticFiles();
+        //     app.UseStaticFiles();
 
-            app.UseNodeModules(environment.ContentRootPath);
+        //     app.UseNodeModules(environment.ContentRootPath);
 
-            app.UseSession();
+        //     app.UseSession();
 
-            app.UseSignalR(routes =>
-            {
-                routes.MapHub<ChatHub>("/chatHub");
-            });
+        //     app.UseSignalR(routes =>
+        //     {
+        //         routes.MapHub<ChatHub>("/chatHub");
+        //     });
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "ElectricStoreRoute",
-                    template: "{controller}/{action}/{id?}/{RefreshCache?}",
-                    defaults: new { controller = "Products", action = "Index" },
-                    constraints: new { id = "[0-9]+" });
-            });
-        }
+        //     app.UseMvc(routes =>
+        //     {
+        //         routes.MapRoute(
+        //             name: "ElectricStoreRoute",
+        //             template: "{controller}/{action}/{id?}/{RefreshCache?}",
+        //             defaults: new { controller = "Products", action = "Index" },
+        //             constraints: new { id = "[0-9]+" });
+        //     });
+        // }
     }
 }

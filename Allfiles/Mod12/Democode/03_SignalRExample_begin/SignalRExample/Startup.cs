@@ -13,30 +13,30 @@ namespace SignalRExample
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc();
-            services.AddSingleton<ISquareManager, SquareManager>();
-        }
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddMvc();
+        //     services.AddSingleton<ISquareManager, SquareManager>();
+        // }
         
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            app.UseStaticFiles();
+        // public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        // {
+        //     app.UseStaticFiles();
 
-            app.UseNodeModules(env.ContentRootPath);
+        //     app.UseNodeModules(env.ContentRootPath);
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                name: "Default",
-                template: "{controller}/{action}",
-                defaults: new { controller = "Square", action = "Index" });
-            });
+        //     app.UseMvc(routes =>
+        //     {
+        //         routes.MapRoute(
+        //         name: "Default",
+        //         template: "{controller}/{action}",
+        //         defaults: new { controller = "Square", action = "Index" });
+        //     });
             
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
-        }
+        //     app.Run(async (context) =>
+        //     {
+        //         await context.Response.WriteAsync("Hello World!");
+        //     });
+        // }
     }
 }
