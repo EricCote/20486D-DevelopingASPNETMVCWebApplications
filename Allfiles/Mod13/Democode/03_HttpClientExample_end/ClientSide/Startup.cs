@@ -11,20 +11,20 @@ namespace ClientSide
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc();
-            services.AddHttpClient();
-        }
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddMvc();
+        //     services.AddHttpClient();
+        // }
 
-        public void Configure(IApplicationBuilder app)
-        {
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "defaultRoute",
-                    template: "{controller=Home}/{action=GetByIdAsync}/{id?}");
-            });
-        }
+        // public void Configure(IApplicationBuilder app)
+        // {
+        //     app.UseMvc(routes =>
+        //     {
+        //         routes.MapRoute(
+        //             name: "defaultRoute",
+        //             template: "{controller=Home}/{action=GetByIdAsync}/{id?}");
+        //     });
+        // }
     }
 }

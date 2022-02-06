@@ -1,7 +1,7 @@
 ﻿$(function () {
     $.ajax({
         type: "GET",
-        url: "http://localhost:54517/api/RestaurantWantedAd",
+        url: "http://localhost:6316/api/RestaurantWantedAd",
         contentType: "application/json; charset=utf-8",
         dataType: "json"
     }).done(function (data) {

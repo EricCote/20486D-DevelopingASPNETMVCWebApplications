@@ -16,28 +16,28 @@ namespace Server
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddDbContext<RestaurantContext>(options =>
-                  options.UseSqlite("Data Source=restaurant.db"));
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddDbContext<RestaurantContext>(options =>
+        //           options.UseSqlite("Data Source=restaurant.db"));
 
 
-            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
-                                                                     .AllowAnyMethod()
-                                                                      .AllowAnyHeader()));
+        //     services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
+        //                                                              .AllowAnyMethod()
+        //                                                               .AllowAnyHeader()));
 
-            services.AddMvc();
-        }
+        //     services.AddMvc();
+        // }
 
-        public void Configure(IApplicationBuilder app, RestaurantContext restaurantContext)
-        {
-            restaurantContext.Database.EnsureDeleted();
-            restaurantContext.Database.EnsureCreated();
+        // public void Configure(IApplicationBuilder app, RestaurantContext restaurantContext)
+        // {
+        //     restaurantContext.Database.EnsureDeleted();
+        //     restaurantContext.Database.EnsureCreated();
 
-            app.UseCors("AllowAll");
+        //     app.UseCors("AllowAll");
 
-            app.UseMvc();
+        //     app.UseMvc();
 
-        }
+        // }
     }
 }

@@ -16,11 +16,11 @@
             e.preventDefault();
             $.ajax({
                 type: "POST",
-                url: "http://localhost:54517/api/job",
+                url: "http://localhost:6316/api/job",
                 data: JSON.stringify(formData),
                 contentType: "application/json;charset=utf-8"
             }).done(function () {
-                location.href = 'http://localhost:54508/JobApplication/ThankYou';
+                location.href = 'http://localhost:6315/JobApplication/ThankYou';
             }).fail(function () {
                 alert('An error has occurred');
             });

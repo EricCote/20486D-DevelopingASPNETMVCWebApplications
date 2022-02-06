@@ -21,7 +21,7 @@
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/RestaurantBranches",
-      "applicationUrl": "http://localhost:5000",
+      "applicationUrl": "http://localhost:6316",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
