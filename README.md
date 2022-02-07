@@ -1,15 +1,23 @@
-### 20486D: Developing ASP.NET Core MVC Applications
+# ASP.NET 6 MVC Labs 
+## Former Course 20486D from MS Learning
 
+Course **20486D: Developing ASP.NET Core MVC Applications** was a course from MS Learning, retired on 2021/12/30. The course covered ASP.NET MVC in the .NET Core 2.1 timeframe (2018) 
 
-**NOTE** : This solution uses a default branch named net6.  
+Some of the course material (the training textbook, the slides) was **not** Open Sourced. 
 
-The original branch (named master), is still using .NET 2.1.
+But all demos, lab solutions and build instructions (with the detailed steps) was Open Sourced on Github, using the very permissive MIT License.
 
-All labs have been updated to .NET 6  (except lab 2)
+This fork is updating demos and labs to the latest .NET version: .NET 6.
 
-####Todo
+**Important note** : This solution uses a default branch named `net6`.  
 
-All lab instructions are still using .NET 2.1 
+The original branch (named `master`), is still using .NET 2.1.
 
-Lab 2 needs to be updated.
- 
+All demos and labs are now updated from 2.1 to .NET 6. A minimum rewrite was done in this first release. A future release should rewrite and re-architecture the source code. (For example, modern apps should not have a dependency on jQuery.)  
+
+---
+
+### Todo
+
+Lab instructions are still using .NET 2.1 and VS 2017. All steps should be updated to supprt.NET 6 and VS 2022. 
+
