@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Underwater.Models
+namespace Underwater.Models;
+
+public class Aquarium
 {
-    public class Aquarium
-    {
-        [Key]
-        public int AquariumId { get; set; }
+    [Key]
+    public int AquariumId { get; set; }
 
-        public string Name { get; set; }
+    public string Name { get; set; }
 
-        public string Address { get; set; }
+    public string Address { get; set; }
 
-        public int Number { get; set; }
+    public int Number { get; set; }
 
-        public bool Open { get; set; }
+    public bool Open { get; set; }
 
-        public virtual ICollection<Fish> Fishes { get; set; }
-    }
+    public virtual ICollection<Fish> Fishes { get; set; }
 }

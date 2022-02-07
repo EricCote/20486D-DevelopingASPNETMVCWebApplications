@@ -16,37 +16,37 @@ namespace Underwater
 {
     public class Startup
     {
-        private IConfiguration _configuration;
+        // private IConfiguration _configuration;
 
-        public Startup(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
+        // public Startup(IConfiguration configuration)
+        // {
+        //     _configuration = configuration;
+        // }
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddTransient<IUnderwaterRepository, UnderwaterRepository>();
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddTransient<IUnderwaterRepository, UnderwaterRepository>();
 
-            services.AddDbContext<UnderwaterContext>(options =>
-                options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
+        //     services.AddDbContext<UnderwaterContext>(options =>
+        //         options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddMvc();
-        }
+        //     services.AddMvc();
+        // }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            app.UseStaticFiles();
+        // public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        // {
+        //     app.UseStaticFiles();
 
-            app.UseNodeModules(env.ContentRootPath);
+        //     app.UseNodeModules(env.ContentRootPath);
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "UnderwaterRoute",
-                    template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "Aquarium", action = "Index" },
-                    constraints: new { id = "[0-9]+" });
-            }); 
-        }
+        //     app.UseMvc(routes =>
+        //     {
+        //         routes.MapRoute(
+        //             name: "UnderwaterRoute",
+        //             template: "{controller}/{action}/{id?}",
+        //             defaults: new { controller = "Aquarium", action = "Index" },
+        //             constraints: new { id = "[0-9]+" });
+        //     }); 
+        // }
     }
 }

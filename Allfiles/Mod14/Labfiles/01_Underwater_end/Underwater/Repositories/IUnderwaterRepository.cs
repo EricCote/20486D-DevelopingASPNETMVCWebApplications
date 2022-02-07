@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Underwater.Models;
+﻿using Underwater.Models;
 
-namespace Underwater.Repositories
+namespace Underwater.Repositories;
+
+public interface IUnderwaterRepository
 {
-    public interface IUnderwaterRepository
-    {
-        IEnumerable<Fish> Getfishes();
-        Fish GetFishById(int id);
-        void AddFish(Fish fish);
-        void RemoveFish(int id);
-        void SaveChanges();
-        IQueryable<Aquarium> PopulateAquariumsDropDownList();
-    }
+    IEnumerable<Fish> Getfishes();
+    Fish GetFishById(int id);
+    void AddFish(Fish fish);
+    void RemoveFish(int id);
+    void SaveChanges();
+    IQueryable<Aquarium> PopulateAquariumsDropDownList();
 }
+

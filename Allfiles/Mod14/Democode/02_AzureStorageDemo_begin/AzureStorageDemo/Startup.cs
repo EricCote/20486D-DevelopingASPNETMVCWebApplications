@@ -15,31 +15,31 @@ namespace AzureStorageDemo
 {
     public class Startup
     {
-        private IConfiguration _configuration;
+    //     private IConfiguration _configuration;
 
-        public Startup(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
+    //     public Startup(IConfiguration configuration)
+    //     {
+    //         _configuration = configuration;
+    //     }
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc();
+    //     public void ConfigureServices(IServiceCollection services)
+    //     {
+    //         services.AddMvc();
 
-            services.AddDbContext<PhotoContext>(options =>
-                 options.UseSqlite("Data Source=photoDb.db"));
-        }
+    //         services.AddDbContext<PhotoContext>(options =>
+    //              options.UseSqlite("Data Source=photoDb.db"));
+    //     }
 
-        public void Configure(IApplicationBuilder app, PhotoContext photoContext, IHostingEnvironment environment)
-        {
-            photoContext.Database.EnsureDeleted();
-            photoContext.Database.EnsureCreated();
+    //     public void Configure(IApplicationBuilder app, PhotoContext photoContext, IHostingEnvironment environment)
+    //     {
+    //         photoContext.Database.EnsureDeleted();
+    //         photoContext.Database.EnsureCreated();
 
-            app.UseStaticFiles();
+    //         app.UseStaticFiles();
 
-            app.UseNodeModules(environment.ContentRootPath);
+    //         app.UseNodeModules(environment.ContentRootPath);
 
-            app.UseMvcWithDefaultRoute();
-        }
-    }
+    //         app.UseMvcWithDefaultRoute();
+    //     }
+     }
 }

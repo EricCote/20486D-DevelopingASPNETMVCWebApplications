@@ -1,24 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using AzureStorageDemo.Data;
+using AzureStorageDemo.Middleware;
 
-namespace AzureStorageDemo
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<PhotoContext>(options =>
+                  options.UseSqlite("Data Source=photoDb.db"));
+
+
+var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().Run();
-        }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
-    }
+    var photoContext = scope.ServiceProvider.GetRequiredService<PhotoContext>();
+    photoContext.Database.EnsureDeleted();
+    photoContext.Database.EnsureCreated();
 }
+
+app.UseStaticFiles();
+//app.UseStaticFiles("node_modules");
+
+app.UseNodeModules(app.Environment.ContentRootPath);
+
+app.UseRouting();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();
