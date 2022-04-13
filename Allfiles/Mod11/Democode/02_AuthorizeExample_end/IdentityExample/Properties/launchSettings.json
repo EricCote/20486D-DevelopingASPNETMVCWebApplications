@@ -8,17 +8,17 @@
     }
   },
   "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
+    "IdentityExample": {
+      "commandName": "Project",
       "launchBrowser": true,
+      "applicationUrl": "http://localhost:6102",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "IdentityExample": {
-      "commandName": "Project",
+    "IIS Express": {
+      "commandName": "IISExpress",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:6112",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

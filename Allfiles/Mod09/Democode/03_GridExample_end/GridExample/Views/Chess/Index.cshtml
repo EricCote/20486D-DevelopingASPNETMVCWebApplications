@@ -36,20 +36,23 @@
         <div class="row align-items-center">
             @foreach (var item in Model)
             {
-                <div class="col-2">
-                    <div class="row justify-content-center">
-                        <img src="~/images/@item.FirstCompetitorPhotoFileName" />
+                <div class="col-2 ">&nbsp;</div>
+                <div class="col-4 ">
+                    <div class="d-flex justify-content-start align-items-center">
+                        <div class="flex-shrink-0">
+                            <img src="~/images/@item.FirstCompetitorPhotoFileName" />
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            @Html.DisplayFor(model => item.FirstCompetitorName)
+                        </div>
                     </div>
-                    <div class="row justify-content-center">
-                        <img src="~/images/@item.SecondCompetitorPhotoFileName" />
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="row">
-                        @Html.DisplayFor(model => item.FirstCompetitorName)
-                    </div>
-                    <div class="row">
-                        @Html.DisplayFor(model => item.SecondCompetitorName)
+                    <div class="d-flex justify-content-start align-items-center">
+                        <div class="flex-shrink-0">
+                            <img src="~/images/@item.SecondCompetitorPhotoFileName" />
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            @Html.DisplayFor(model => item.SecondCompetitorName)
+                        </div>
                     </div>
                 </div>
                 <div class="col-3">
