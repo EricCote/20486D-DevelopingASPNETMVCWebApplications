@@ -42,7 +42,7 @@ public class ProductsController : Controller
     {
         var products = _context.Products.Where(c => c.CategoryId == Id);
         var category = _context.menuCategories.FirstOrDefault(c => c.Id == Id);
-        ViewBag.categoryTitle = category.Name;
+        ViewBag.categoryTitle = category?.Name;
         return View(products);
     }
 
@@ -53,11 +53,11 @@ public class ProductsController : Controller
         {
             Customer sessionCustomer = new Customer()
             {
-                FirstName = HttpContext.Session.GetString("CustomerFirstName"),
-                LastName = HttpContext.Session.GetString("CustomerLastName"),
-                Email = HttpContext.Session.GetString("CustomerEmail"),
-                Address = HttpContext.Session.GetString("CustomerAddress"),
-                PhoneNumber = HttpContext.Session.GetInt32("CustomerPhoneNumber").Value,
+                FirstName = HttpContext.Session.GetString("CustomerFirstName") ?? "",
+                LastName = HttpContext.Session.GetString("CustomerLastName") ?? "" ,
+                Email = HttpContext.Session.GetString("CustomerEmail") ?? "",
+                Address = HttpContext.Session.GetString("CustomerAddress") ?? "",
+                PhoneNumber = HttpContext.Session.GetInt32("CustomerPhoneNumber") ?? 0,
             };
             PopulateProductsList();
             return View(sessionCustomer);
@@ -78,7 +78,7 @@ public class ProductsController : Controller
             HttpContext.Session.SetInt32("CustomerPhoneNumber", customer.PhoneNumber);
             if (HttpContext.Session.GetString("CustomerProducts") != null)
             {
-                List<int> productsListId =  JsonSerializer.Deserialize<List<int>>(HttpContext.Session.GetString("CustomerProducts"));
+                List<int> productsListId =  JsonSerializer.Deserialize<List<int>>(HttpContext.Session.GetString("CustomerProducts")?? "")?? new List<int>();
                 customer.SelectedProductsList.AddRange(productsListId);
             }
             var serialisedDate = JsonSerializer.Serialize(customer.SelectedProductsList);
@@ -89,7 +89,7 @@ public class ProductsController : Controller
         return View(customer);
     }
 
-    private void PopulateProductsList(List<int> selectedProducts = null)
+    private void PopulateProductsList(List<int>? selectedProducts = null)
     {
         var products = from p in _context.Products
                        orderby p.ProductName
@@ -100,7 +100,7 @@ public class ProductsController : Controller
 
     public IActionResult GetImage(int productId)
     {
-        Product requestedPhoto = _context.Products.SingleOrDefault(i => i.Id == productId);
+        Product? requestedPhoto = _context.Products.SingleOrDefault(i => i.Id == productId);
         if (requestedPhoto != null)
         {
             string webRootpath = _environment.WebRootPath;

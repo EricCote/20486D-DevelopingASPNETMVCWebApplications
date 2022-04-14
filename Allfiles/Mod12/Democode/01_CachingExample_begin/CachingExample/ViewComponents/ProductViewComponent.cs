@@ -15,7 +15,7 @@ public class ProductViewComponent : ViewComponent
 
     public Task<IViewComponentResult> InvokeAsync(int id)
     {
-        Product product = _repository.GetProduct(id);
+        Product? product = _repository.GetProduct(id);
         return Task.FromResult<IViewComponentResult>(View("SelectedProduct", product));
     }
 }

@@ -51,7 +51,7 @@ public class ProductsController : Controller
         return View(customer);
     }
 
-    private void PopulateProductsList(List<int> selectedProducts = null)
+    private void PopulateProductsList(List<int>? selectedProducts = null)
     {
         var products = from p in _context.Products
                        orderby p.ProductName

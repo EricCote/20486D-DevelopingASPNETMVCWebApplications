@@ -9,9 +9,9 @@ public class StoreContext : DbContext
     {
     }
 
-    public DbSet<Product> Products { get; set; }
-    public DbSet<Customer> Customers { get; set; }
-    public DbSet<MenuCategory> menuCategories { get; set; }
+    public DbSet<Product> Products { get; set; } = null!;
+    public DbSet<Customer> Customers { get; set; } = null!;
+    public DbSet<MenuCategory> menuCategories { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

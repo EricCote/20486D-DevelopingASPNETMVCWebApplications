@@ -17,9 +17,9 @@ public class ProductRepository : IProductRepository
         return _context.Products.ToList();
     }
 
-    public Product GetProduct(int id)
+    public Product? GetProduct(int id)
     {
-        Product product = _context.Products.Where(p => p.Id == id).FirstOrDefault();
+        Product? product = _context.Products.Where(p => p.Id == id).FirstOrDefault();
         return product;
     }
 

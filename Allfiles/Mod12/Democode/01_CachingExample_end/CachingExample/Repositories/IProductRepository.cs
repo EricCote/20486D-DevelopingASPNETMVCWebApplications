@@ -6,6 +6,6 @@ public interface IProductRepository
 {
     IEnumerable<Product> GetProducts();
     Dictionary<int, string> GetProductNames();
-    Product GetProduct(int id);
+    Product? GetProduct(int id);
 }
 

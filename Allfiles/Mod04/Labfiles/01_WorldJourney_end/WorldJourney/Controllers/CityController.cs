@@ -29,7 +29,7 @@ public class CityController : Controller
     public IActionResult Details(int? id)
     {
         ViewData["Page"] = "Selected city";
-        City city = _data.GetCityById(id);
+        City? city = _data.GetCityById(id);
         if (city == null)
         {
             return NotFound();
@@ -42,7 +42,7 @@ public class CityController : Controller
     public IActionResult GetImage(int? cityId)
     {
         ViewData["Message"] = "display Image";
-        City requestedCity = _data.GetCityById(cityId);
+        City? requestedCity = _data.GetCityById(cityId);
         if (requestedCity != null)
         {
             string webRootpath = _environment.WebRootPath;

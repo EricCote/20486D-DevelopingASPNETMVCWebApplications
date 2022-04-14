@@ -1,7 +1,7 @@
 ﻿namespace WorldJourney.Models;
 public class Data : IData
 {
-    public List<City> CityList { get; set; }
+    public List<City> CityList { get; set; } = new List<City>();
 
     public List<City> CityInitializeData()
     {
@@ -14,7 +14,7 @@ public class Data : IData
         return CityList;
     }
 
-    public City GetCityById(int? id)
+    public City? GetCityById(int? id)
     {
         if (id == null)
         {

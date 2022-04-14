@@ -3,7 +3,7 @@
   "name": "asp.net",
   "private": true,
   "dependencies": {
-    "@microsoft/signalr": "^6.0.0",
+    "@microsoft/signalr": "^6.0.4",
     "jquery": "^3.6.0"
   },
   "devDependencies": {

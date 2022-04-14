@@ -2,6 +2,6 @@
 
 public class SessionStateViewModel
 {
-    public string CustomerName { get; set; }
-    public List<Product> SelectedProducts { get; set; }
+    public string CustomerName { get; set; } = null!;
+    public List<Product> SelectedProducts { get; set; } = null!;
 }

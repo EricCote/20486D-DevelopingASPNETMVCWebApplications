@@ -13,8 +13,8 @@ namespace ElectricStore.Controllers
     public class ShoppingCartController : Controller
     {
         private StoreContext _context;
-        private List<Product> products;
-        private SessionStateViewModel sessionModel;
+        private List<Product> products = null!;
+        private SessionStateViewModel sessionModel = null!;
 
         public ShoppingCartController(StoreContext context)
         {
@@ -25,16 +25,20 @@ namespace ElectricStore.Controllers
         {
             if (!string.IsNullOrEmpty(HttpContext.Session.GetString("CustomerFirstName")) && !string.IsNullOrEmpty(HttpContext.Session.GetString("CustomerProducts")))
             {
-                List<int> productsListId = JsonSerializer.Deserialize<List<int>>(HttpContext.Session.GetString("CustomerProducts"));
+                List<int> productsListId = JsonSerializer.Deserialize<List<int>>(HttpContext.Session.GetString("CustomerProducts") ?? "") ?? new List<int>();
                 products = new List<Product>();
                 foreach (var item in productsListId)
                 {
                     var product = _context.Products.SingleOrDefault(p => p.Id == item);
-                    products.Add(product);
+                    if (product != null)
+                    {
+                        products.Add(product);
+                    }
+
                 }
                 sessionModel = new SessionStateViewModel
                 {
-                    CustomerName = HttpContext.Session.GetString("CustomerFirstName"),
+                    CustomerName = HttpContext.Session.GetString("CustomerFirstName") ?? "",
                     SelectedProducts = products
                 };
                 return View(sessionModel);
