@@ -6,7 +6,7 @@ public class StudentController : Controller
 {
     public IActionResult Index()
     {
-        if (!this.User.Identity.IsAuthenticated)
+        if (!(this.User.Identity?.IsAuthenticated ?? false))
         {
             return RedirectToAction("Login", "Account");
         }

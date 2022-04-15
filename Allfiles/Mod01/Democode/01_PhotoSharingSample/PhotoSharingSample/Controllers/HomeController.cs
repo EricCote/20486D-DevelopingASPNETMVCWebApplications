@@ -21,7 +21,7 @@ public class HomeController : Controller
 
     public IActionResult GetImage(int PhotoId)
     {
-        Photo requestedPhoto = _dbContext.Photos.FirstOrDefault(p => p.PhotoID == PhotoId);
+        Photo? requestedPhoto = _dbContext.Photos.FirstOrDefault(p => p.PhotoID == PhotoId);
         if (requestedPhoto != null)
         {
             string webRootpath = _environment.WebRootPath;

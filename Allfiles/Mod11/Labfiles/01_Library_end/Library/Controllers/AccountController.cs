@@ -21,7 +21,7 @@ public class AccountController : Controller
 
     public IActionResult Login()
     {
-        if (this.User.Identity.IsAuthenticated)
+        if (this.User.Identity?.IsAuthenticated ?? false)
         {
             return RedirectToAction("Index", "Library");
         }

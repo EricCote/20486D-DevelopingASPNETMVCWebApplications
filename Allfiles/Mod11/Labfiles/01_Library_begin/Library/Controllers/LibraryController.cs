@@ -29,7 +29,7 @@ public class LibraryController : Controller
 
     public IActionResult GetBooksByGener()
     {
-        if (this.User.Identity.IsAuthenticated)
+        if (this.User.Identity?.IsAuthenticated ?? false)
         {
             var booksGenerQuery = from b in _context.Books
                                   orderby b.Genre.Name
@@ -42,7 +42,7 @@ public class LibraryController : Controller
 
     public IActionResult LendingBook(int id)
     {
-        Book book = _context.Books.FirstOrDefault(b => b.Id == id);
+        Book? book = _context.Books.FirstOrDefault(b => b.Id == id);
         if (book == null)
         {
             return NotFound();
@@ -54,21 +54,24 @@ public class LibraryController : Controller
     public async Task<IActionResult> LendingBookPost(int id)
     {
         var bookToUpdate = _context.Books.FirstOrDefault(b => b.Id == id);
-        bookToUpdate.Available = false;
-        if (await TryUpdateModelAsync<Book>(
-            bookToUpdate,
-            "",
-            b => b.Available))
+        if (bookToUpdate != null)
         {
-            _context.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            bookToUpdate.Available = false;
+            if (await TryUpdateModelAsync<Book>(
+                bookToUpdate,
+                "",
+                b => b.Available))
+            {
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
         }
         return View(bookToUpdate);
     }
 
     public IActionResult GetImage(int id)
     {
-        Book requestedBook = _context.Books.FirstOrDefault(b => b.Id == id);
+        Book? requestedBook = _context.Books.FirstOrDefault(b => b.Id == id);
         if (requestedBook != null)
         {
             string webRootpath = _environment.WebRootPath;
@@ -86,7 +89,7 @@ public class LibraryController : Controller
             }
             else
             {
-                if (requestedBook.PhotoFile.Length > 0)
+                if (requestedBook.PhotoFile?.Length > 0)
                 {
                     return File(requestedBook.PhotoFile, requestedBook.ImageMimeType);
                 }

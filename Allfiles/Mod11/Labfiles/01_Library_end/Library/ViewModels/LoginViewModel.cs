@@ -6,13 +6,13 @@ public class LoginViewModel
 {
     [Display(Name = "User Name")]
     [Required(ErrorMessage = "Please enter your user name.")]
-    public string UserName { get; set; }
+    public string UserName { get; set; } = null!;
 
     [Display(Name = "Password")]
     [Required(ErrorMessage = "Please enter your password.")]
-    public string Password { get; set; }
+    public string Password { get; set; } = null!;
 
     [Display(Name = "Remember Me")]
-    public bool RememberMe { get; set; }
+    public bool RememberMe { get; set; } = false;
 }
 

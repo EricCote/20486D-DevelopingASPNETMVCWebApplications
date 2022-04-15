@@ -11,6 +11,6 @@ public class StudentContext : DbContext // IdentityDbContext<Student>
     {
     }
 
-    public DbSet<Student> Students { get; set; }
+    public DbSet<Student> Students { get; set; } = null!;
 }
 

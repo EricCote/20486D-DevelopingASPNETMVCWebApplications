@@ -7,6 +7,6 @@ public class Course
     public int Id { get; set; }
 
     [Display(Name = "Course Name")]
-    public string Name { get; set; }
+    public string Name { get; set; } = null!;
 }
 

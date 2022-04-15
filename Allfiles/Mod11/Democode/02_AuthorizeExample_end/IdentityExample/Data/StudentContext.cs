@@ -11,8 +11,8 @@ public class StudentContext : IdentityDbContext<Student>
     {
     }
 
-    public DbSet<Student> Students { get; set; }
-    public DbSet<Course> Courses { get; set; }
+    public DbSet<Student> Students { get; set; } = null!;
+    public DbSet<Course> Courses { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
