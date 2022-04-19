@@ -4,7 +4,7 @@ namespace ButterfliesShop.Services;
 
 public class DataService : IDataService
 {
-    public List<Butterfly> ButterfliesList { get; set; }
+    public List<Butterfly> ButterfliesList { get; set; } = new List<Butterfly>();
     public void AddButterfly(Butterfly butterfly)
     {
         ButterfliesList.Add(butterfly);
@@ -22,7 +22,7 @@ public class DataService : IDataService
         return ButterfliesList;
     }
 
-    public Butterfly GetButterflyById(int? id)
+    public Butterfly? GetButterflyById(int? id)
     {
         if (id == null)
         {

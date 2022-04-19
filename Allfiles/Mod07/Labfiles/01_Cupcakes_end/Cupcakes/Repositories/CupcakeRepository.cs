@@ -19,7 +19,7 @@ public class CupcakeRepository : ICupcakeRepository
     }
 
 
-    public Cupcake GetCupcakeById(int id)
+    public Cupcake? GetCupcakeById(int id)
     {
         return _context.Cupcakes.Include(b => b.Bakery)
             .SingleOrDefault(c => c.CupcakeId == id);
@@ -45,6 +45,7 @@ public class CupcakeRepository : ICupcakeRepository
     public void DeleteCupcake(int id)
     {
         var cupcake = _context.Cupcakes.SingleOrDefault(c => c.CupcakeId == id);
+        if (cupcake == null) return;
         _context.Cupcakes.Remove(cupcake);
         _context.SaveChanges();
     }

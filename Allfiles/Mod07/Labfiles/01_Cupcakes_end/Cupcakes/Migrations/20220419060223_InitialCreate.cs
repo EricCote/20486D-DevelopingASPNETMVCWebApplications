@@ -1,6 +1,7 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
 
 namespace Cupcakes.Migrations
 {
@@ -12,11 +13,11 @@ namespace Cupcakes.Migrations
                 name: "Bakeries",
                 columns: table => new
                 {
-                    BakeryId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    BakeryName = table.Column<string>(maxLength: 50, nullable: true),
-                    Quantity = table.Column<int>(nullable: false),
-                    Address = table.Column<string>(maxLength: 50, nullable: true)
+                    BakeryId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BakeryName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -27,16 +28,16 @@ namespace Cupcakes.Migrations
                 name: "Cupcakes",
                 columns: table => new
                 {
-                    CupcakeId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CupcakeType = table.Column<int>(nullable: false),
-                    Description = table.Column<string>(nullable: false),
-                    GlutenFree = table.Column<bool>(nullable: false),
-                    Price = table.Column<double>(nullable: false),
-                    ImageName = table.Column<string>(nullable: true),
-                    PhotoFile = table.Column<byte[]>(nullable: true),
-                    ImageMimeType = table.Column<string>(nullable: true),
-                    BakeryId = table.Column<int>(nullable: false)
+                    CupcakeId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CupcakeType = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GlutenFree = table.Column<bool>(type: "bit", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    ImageName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhotoFile = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    ImageMimeType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BakeryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -66,7 +67,7 @@ namespace Cupcakes.Migrations
                 values: new object[,]
                 {
                     { 1, 1, 0, "Vanilla cupcake with coconut cream", true, "image/jpeg", "birthday-cupcake.jpg", null, 2.5 },
-                    { 2, 2, 2, "Chocolate cupcake with caramel filling and chocolate butter cream", false, "image/jpeg", "chocolate-cupcake.jpg", null, 3.2 },
+                    { 2, 2, 2, "Chocolate cupcake with caramel filling and chocolate butter cream", false, "image/jpeg", "chocolate-cupcake.jpg", null, 3.2000000000000002 },
                     { 3, 3, 3, "Chocolate cupcake with straberry cream filling", false, "image/jpeg", "pink-cupcake.jpg", null, 4.0 },
                     { 4, 4, 1, "Vanilla cupcake with butter cream", true, "image/jpeg", "turquoise-cupcake.jpg", null, 1.5 }
                 });

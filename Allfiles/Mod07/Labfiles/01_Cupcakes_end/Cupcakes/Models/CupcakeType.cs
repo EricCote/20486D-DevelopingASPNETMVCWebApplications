@@ -7,4 +7,3 @@ public enum CupcakeType
     Chocolate,
     Strawberry
 }
-

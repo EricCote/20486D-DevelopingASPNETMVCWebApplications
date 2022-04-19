@@ -23,7 +23,7 @@ public class HomeController : Controller
 
     public IActionResult GetImage(int id)
     {
-        Photo requestedPhoto = _dbContext.Photos.FirstOrDefault(i => i.Id == id);
+        Photo? requestedPhoto = _dbContext.Photos.FirstOrDefault(i => i.Id == id);
         if (requestedPhoto != null)
         {
             string webRootpath = _environment.WebRootPath;
@@ -37,13 +37,13 @@ public class HomeController : Controller
                 {
                     fileBytes = br.ReadBytes((int)fileOnDisk.Length);
                 }
-                return File(fileBytes, requestedPhoto.ImageMimeType);
+                return File(fileBytes, requestedPhoto.ImageMimeType ?? "");
             }
             else
             {
-                if (requestedPhoto.PhotoFile.Length > 0)
+                if (requestedPhoto.PhotoFile?.Length > 0)
                 {
-                    return File(requestedPhoto.PhotoFile, requestedPhoto.ImageMimeType);
+                    return File(requestedPhoto.PhotoFile, requestedPhoto.ImageMimeType ?? "");
                 }
                 else
                 {

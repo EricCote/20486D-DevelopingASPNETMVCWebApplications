@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 namespace LayoutExample.Controllers;
+
 public class StudentController : Controller
 {
     private StudentContext _context;

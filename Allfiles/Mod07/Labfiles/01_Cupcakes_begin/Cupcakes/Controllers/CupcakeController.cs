@@ -12,7 +12,7 @@ public class CupcakeController : Controller
 
     public IActionResult GetImage(int id)
     {
-        Cupcake requestedCupcake = _repository.GetCupcakeById(id);
+        Cupcake? requestedCupcake = _repository.GetCupcakeById(id);
         if (requestedCupcake != null)
         {
             string webRootpath = _environment.WebRootPath;

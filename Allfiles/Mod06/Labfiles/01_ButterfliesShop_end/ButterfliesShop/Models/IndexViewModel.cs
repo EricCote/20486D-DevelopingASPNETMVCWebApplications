@@ -2,6 +2,6 @@
 
 public class IndexViewModel
 {
-    public List<Butterfly> Butterflies { get; set; }
+    public List<Butterfly> Butterflies { get; set; } = null!;
 }
 

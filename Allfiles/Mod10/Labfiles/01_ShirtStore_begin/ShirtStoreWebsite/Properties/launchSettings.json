@@ -24,14 +24,14 @@
         "ASPNETCORE_ENVIRONMENT": "Production"
       }
     },
-    "Development": {
+    "IIS Development": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Production": {
+    "IIS Production": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {

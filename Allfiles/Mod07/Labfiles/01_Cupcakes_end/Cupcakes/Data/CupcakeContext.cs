@@ -9,8 +9,8 @@ public class CupcakeContext : DbContext
     {
     }
 
-    public DbSet<Cupcake> Cupcakes { get; set; }
-    public DbSet<Bakery> Bakeries { get; set; }
+    public DbSet<Cupcake> Cupcakes { get; set; } = null!;
+    public DbSet<Bakery> Bakeries { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

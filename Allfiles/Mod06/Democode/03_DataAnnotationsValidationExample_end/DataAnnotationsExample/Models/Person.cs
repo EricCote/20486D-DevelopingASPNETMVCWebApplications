@@ -9,12 +9,12 @@ public class Person
     [DataType(DataType.Text)]
     [Display(Name = "First Name:")]
     [Required(ErrorMessage = "Please enter your first name.")]
-    public string FirstName { get; set; }
+    public string FirstName { get; set; } = "";
 
     [DataType(DataType.Text)]
     [Display(Name = "Last Name:")]
     [Required(ErrorMessage = "Please enter your last name.")]
-    public string LastName { get; set; }
+    public string LastName { get; set; } = "";
 
     [Range(15, 50)]
     [Display(Name = "Age:")]
@@ -22,6 +22,6 @@ public class Person
 
     [StringLength(10)]
     [Display(Name = "Description:")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 }
 

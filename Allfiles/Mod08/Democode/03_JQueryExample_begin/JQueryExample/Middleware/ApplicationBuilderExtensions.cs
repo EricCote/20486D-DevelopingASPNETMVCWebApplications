@@ -3,7 +3,7 @@ using Microsoft.Extensions.FileProviders;
 
 namespace JQueryExample.Middleware;
 
-    public static class ApplicationBuilderExtensions
+public static class ApplicationBuilderExtensions
 {
     public static IApplicationBuilder UseNodeModules(this IApplicationBuilder applicationBuilder, string root)
     {
@@ -18,4 +18,3 @@ namespace JQueryExample.Middleware;
         return applicationBuilder;
     }
 }
-

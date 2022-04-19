@@ -8,7 +8,7 @@ builder.Services.AddTransient<ICupcakeRepository, CupcakeRepository>();
 builder.Services.AddDbContext<CupcakeContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-  
+
 var app = builder.Build();
 app.UseStaticFiles();
 app.UseRouting();

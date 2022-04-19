@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace LayoutExample.Models;
 
@@ -29,4 +28,3 @@ public class Student
     [DataType(DataType.Date)]
     public DateTime StartedUniversityDate { get; set; }
 }
-

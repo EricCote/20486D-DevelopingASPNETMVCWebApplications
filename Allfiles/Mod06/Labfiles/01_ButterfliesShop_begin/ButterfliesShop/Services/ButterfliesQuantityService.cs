@@ -16,13 +16,13 @@ public class ButterfliesQuantityService : IButterfliesQuantityService
 
     public void AddButterfliesQuantityData(Butterfly butterfly)
     {
-        if (ButterfliesQuantityDictionary.ContainsKey(butterfly.ButterflyFamily.Value))
+        if (ButterfliesQuantityDictionary.ContainsKey(butterfly.ButterflyFamily))
         {
-            ButterfliesQuantityDictionary[butterfly.ButterflyFamily.Value] += butterfly.Quantity;
+            ButterfliesQuantityDictionary[butterfly.ButterflyFamily] += butterfly.Quantity;
         }
         else
         {
-            ButterfliesQuantityDictionary.Add(butterfly.ButterflyFamily.Value, butterfly.Quantity);
+            ButterfliesQuantityDictionary.Add(butterfly.ButterflyFamily, butterfly.Quantity);
         }
     }
 

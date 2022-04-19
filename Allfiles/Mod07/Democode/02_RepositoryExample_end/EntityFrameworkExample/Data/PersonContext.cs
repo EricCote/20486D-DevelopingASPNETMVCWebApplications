@@ -10,7 +10,7 @@ public class PersonContext : DbContext
     {
     }
 
-    public DbSet<Person> People { get; set; }
+    public DbSet<Person> People { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

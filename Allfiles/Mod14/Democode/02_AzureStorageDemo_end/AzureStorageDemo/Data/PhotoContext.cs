@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AzureStorageDemo.Data;
 
-
 public class PhotoContext : DbContext
 {
     public PhotoContext(DbContextOptions<PhotoContext> options)
@@ -12,7 +11,7 @@ public class PhotoContext : DbContext
 
     }
 
-    public DbSet<Photo> Photos { get; set; }
+    public DbSet<Photo> Photos { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -82,4 +81,3 @@ public class PhotoContext : DbContext
             });
     }
 }
-

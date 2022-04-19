@@ -42,6 +42,10 @@ public class CupcakeController : Controller
     [HttpPost, ActionName("Create")]
     public IActionResult CreatePost(Cupcake cupcake)
     {
+        cupcake.Bakery =  _repository.PopulateBakeriesDropDownList().ToList<Bakery>().Find(b=> b.BakeryId==cupcake.BakeryId)!;
+        ModelState.ClearValidationState("Bakery");
+        ModelState.MarkFieldValid("Bakery");
+
         if (ModelState.IsValid)
         {
             _repository.CreateCupcake(cupcake);
@@ -54,7 +58,7 @@ public class CupcakeController : Controller
     [HttpGet]
     public IActionResult Edit(int id)
     {
-        Cupcake cupcake = _repository.GetCupcakeById(id);
+        Cupcake? cupcake = _repository.GetCupcakeById(id);
         if (cupcake == null)
         {
             return NotFound();
@@ -67,6 +71,7 @@ public class CupcakeController : Controller
     public async Task<IActionResult> EditPost(int id)
     {
         var cupcakeToUpdate = _repository.GetCupcakeById(id);
+        if (cupcakeToUpdate ==null) return NotFound();
         bool isUpdated = await TryUpdateModelAsync<Cupcake>(
                             cupcakeToUpdate,
                             "",
@@ -110,7 +115,7 @@ public class CupcakeController : Controller
 
     public IActionResult GetImage(int id)
     {
-        Cupcake requestedCupcake = _repository.GetCupcakeById(id);
+        Cupcake? requestedCupcake = _repository.GetCupcakeById(id);
         if (requestedCupcake != null)
         {
             string webRootpath = _environment.WebRootPath;
@@ -128,7 +133,7 @@ public class CupcakeController : Controller
             }
             else
             {
-                if (requestedCupcake.PhotoFile.Length > 0)
+                if (requestedCupcake.PhotoFile?.Length > 0)
                 {
                     return File(requestedCupcake.PhotoFile, requestedCupcake.ImageMimeType);
                 }

@@ -12,21 +12,19 @@ public class MaxButterflyQuantityValidation : ValidationAttribute
         _maxAmount = maxAmount;
     }
 
-    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
     {
-        var service = (IButterfliesQuantityService)validationContext.GetService(typeof(IButterfliesQuantityService));
+        var service = (IButterfliesQuantityService?)validationContext.GetService(typeof(IButterfliesQuantityService));
         Butterfly butterfly = (Butterfly)validationContext.ObjectInstance;
-        if (butterfly.ButterflyFamily != null)
+
+        int? quantity = service?.GetButterflyFamilyQuantity(butterfly.ButterflyFamily);
+        int? sumQuantity = quantity + butterfly.Quantity;
+        if (sumQuantity > _maxAmount)
         {
-            int? quantity = service.GetButterflyFamilyQuantity(butterfly.ButterflyFamily.Value);
-            int? sumQuantity = quantity + butterfly.Quantity;
-            if (sumQuantity > _maxAmount)
-            {
-                return new ValidationResult(string.Format("Limit of butterflies from the same family in the store is {0} butterflies. Currently there are {1}", _maxAmount, quantity));
-            }
-            return ValidationResult.Success;
+            return new ValidationResult(string.Format("Limit of butterflies from the same family in the store is {0} butterflies. Currently there are {1}", _maxAmount, quantity));
         }
         return ValidationResult.Success;
+
     }
 }
 

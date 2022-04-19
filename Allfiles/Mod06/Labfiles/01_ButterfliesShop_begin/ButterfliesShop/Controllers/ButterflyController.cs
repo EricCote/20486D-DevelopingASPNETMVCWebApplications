@@ -21,7 +21,7 @@ public class ButterflyController : Controller
 
     private void InitializeButterfliesData()
     {
-        if (_data.ButterfliesList == null)
+        if (!_data.ButterfliesList.Any())
         {
             List<Butterfly> butterflies = _data.ButterfliesInitializeData();
             foreach (var butterfly in butterflies)
@@ -33,10 +33,10 @@ public class ButterflyController : Controller
 
     public IActionResult GetImage(int id)
     {
-        Butterfly requestedButterfly = _data.GetButterflyById(id);
+        Butterfly? requestedButterfly = _data.GetButterflyById(id);
         if (requestedButterfly != null)
         {
-            return null;
+            return Content("Should return an image");
         }
         else
         {

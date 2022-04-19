@@ -10,11 +10,11 @@ public class Butterfly
 
     [Display(Name = "Common Name:")]
     [Required(ErrorMessage = "Please enter the butterfly name")]
-    public string CommonName { get; set; }
+    public string CommonName { get; set; } = "";
 
     [Display(Name = "Butterfly Family:")]
     [Required(ErrorMessage = "Please select the butterfly family")]
-    public Family? ButterflyFamily { get; set; }
+    public Family ButterflyFamily { get; set; }
 
     [Display(Name = "Butterflies Quantity:")]
     [Required(ErrorMessage = "Please select the butterfly quantity")]
@@ -24,7 +24,7 @@ public class Butterfly
     [Display(Name = "Characteristics:")]
     [Required(ErrorMessage = "Please type the characteristics")]
     [StringLength(50)]
-    public string Characteristics { get; set; }
+    public string Characteristics { get; set; } = "";
 
     [DataType(DataType.DateTime)]
     [Display(Name = "Updated on:")]
@@ -33,10 +33,10 @@ public class Butterfly
 
     [Display(Name = "Butterflies Picture:")]
     [Required(ErrorMessage = "Please select the butterflies picture")]
-    public IFormFile PhotoAvatar { get; set; }
+    public IFormFile PhotoAvatar { get; set; } = null!;
 
-    public string ImageName { get; set; }
-    public byte[] PhotoFile { get; set; }
-    public string ImageMimeType { get; set; }
+    public string ImageName { get; set; } = "";
+    public byte[] PhotoFile { get; set; } = new byte[0];
+    public string ImageMimeType { get; set; } = "";
 }
 

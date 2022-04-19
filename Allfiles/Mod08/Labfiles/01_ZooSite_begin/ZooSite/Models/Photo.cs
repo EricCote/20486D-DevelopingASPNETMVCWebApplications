@@ -20,4 +20,3 @@ public class Photo
     [DataType(DataType.MultilineText)]
     public string Description { get; set; }
 }
-

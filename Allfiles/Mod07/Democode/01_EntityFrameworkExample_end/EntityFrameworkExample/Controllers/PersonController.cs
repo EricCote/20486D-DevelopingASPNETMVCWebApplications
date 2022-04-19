@@ -22,6 +22,8 @@ public class PersonController : Controller
     public IActionResult Edit(int id)
     {
         var person = _context.People.SingleOrDefault(m => m.PersonId == id);
+        if (person == null) return NotFound();
+
         person.FirstName = "Brandon";
         _context.Update(person);
         _context.SaveChanges();
@@ -38,6 +40,8 @@ public class PersonController : Controller
     public IActionResult Delete(int id)
     {
         var person = _context.People.SingleOrDefault(m => m.PersonId == id);
+        if (person == null) return NotFound();
+
         _context.People.Remove(person);
         _context.SaveChanges();
         return RedirectToAction(nameof(Index));

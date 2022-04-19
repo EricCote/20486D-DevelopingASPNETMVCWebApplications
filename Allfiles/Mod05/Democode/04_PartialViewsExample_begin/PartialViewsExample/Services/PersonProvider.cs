@@ -1,7 +1,7 @@
 ﻿namespace PartialViewsExample.Services;
 public class PersonProvider : IPersonProvider
 {
-    public List<Person> PersonList { get; private set; }
+    public List<Person> PersonList { get; private set; } = null!;
 
     public PersonProvider()
     {

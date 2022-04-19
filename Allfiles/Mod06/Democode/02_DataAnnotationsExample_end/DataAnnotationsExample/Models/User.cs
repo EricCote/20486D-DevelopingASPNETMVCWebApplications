@@ -7,11 +7,11 @@ public class User
     public int UserId { get; set; }
 
     [Display(Name = "Full Name:")]
-    public string FullName { get; set; }
+    public string? FullName { get; set; }
 
     [Display(Name = "Email Address:")]
     [DataType(DataType.EmailAddress)]
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
     [Display(Name = "Birthdate:")]
     [DataType(DataType.Date)]
@@ -19,5 +19,5 @@ public class User
 
     [Display(Name = "Password:")]
     [DataType(DataType.Password)]
-    public string Password { get; set; }
+    public string? Password { get; set; }
 }

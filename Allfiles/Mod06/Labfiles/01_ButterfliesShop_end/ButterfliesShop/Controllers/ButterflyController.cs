@@ -22,7 +22,7 @@ public class ButterflyController : Controller
 
     private void InitializeButterfliesData()
     {
-        if (_data.ButterfliesList == null)
+        if (!_data.ButterfliesList.Any())
         {
             List<Butterfly> butterflies = _data.ButterfliesInitializeData();
             foreach (var butterfly in butterflies)
@@ -41,7 +41,7 @@ public class ButterflyController : Controller
 
     public IActionResult GetImage(int id)
     {
-        Butterfly requestedButterfly = _data.GetButterflyById(id);
+        Butterfly? requestedButterfly = _data.GetButterflyById(id);
         if (requestedButterfly != null)
         {
             string webRootpath = _environment.WebRootPath;
@@ -86,13 +86,13 @@ public class ButterflyController : Controller
     {
         if (ModelState.IsValid)
         {
-            Butterfly lastButterfly = _data.ButterfliesList.LastOrDefault();
+            Butterfly? lastButterfly = _data.ButterfliesList.LastOrDefault();
             butterfly.CreatedDate = DateTime.Today;
-            if (butterfly.PhotoAvatar != null && butterfly.PhotoAvatar.Length > 0)
+            if (butterfly.PhotoAvatar?.Length > 0)
             {
                 butterfly.ImageMimeType = butterfly.PhotoAvatar.ContentType;
                 butterfly.ImageName = Path.GetFileName(butterfly.PhotoAvatar.FileName);
-                butterfly.Id = lastButterfly.Id + 1;
+                butterfly.Id = (lastButterfly?.Id ?? 0)  + 1;
                 _butterfliesQuantityService.AddButterfliesQuantityData(butterfly);
                 using (var memoryStream = new MemoryStream())
                 {

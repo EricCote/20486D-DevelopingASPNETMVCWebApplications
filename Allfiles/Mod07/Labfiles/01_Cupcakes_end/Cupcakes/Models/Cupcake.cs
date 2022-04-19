@@ -11,11 +11,11 @@ public class Cupcake
 
     [Required(ErrorMessage = "Please select a cupcake type")]
     [Display(Name = "Cupcake Type:")]
-    public CupcakeType? CupcakeType { get; set; }
+    public CupcakeType CupcakeType { get; set; } = CupcakeType.Chocolate;
 
     [Required(ErrorMessage = "Please enter a cupcake description")]
     [Display(Name = "Description:")]
-    public string Description { get; set; }
+    public string Description { get; set; } = "";
 
     [Display(Name = "Gluten Free:")]
     public bool GlutenFree { get; set; }
@@ -27,21 +27,21 @@ public class Cupcake
     [Required(ErrorMessage = "Please enter a cupcake price")]
     [DataType(DataType.Currency)]
     [Display(Name = "Price:")]
-    public double? Price { get; set; }
+    public double Price { get; set; } = 0D;
 
     [NotMapped]
     [Display(Name = "Cupcake Picture:")]
-    public IFormFile PhotoAvatar { get; set; }
+    public IFormFile? PhotoAvatar { get; set; }
 
-    public string ImageName { get; set; }
+    public string ImageName { get; set; } = "";
 
-    public byte[] PhotoFile { get; set; }
+    public byte[]? PhotoFile { get; set; }
 
-    public string ImageMimeType { get; set; }
+    public string ImageMimeType { get; set; } = "";
 
     [Required(ErrorMessage = "Please select a bakery")]
-    public int? BakeryId { get; set; }
+    public int BakeryId { get; set; } = 1;
 
-    public virtual Bakery Bakery { get; set; }
+    public virtual Bakery Bakery { get; set; } = null!;
 }
 

@@ -5,7 +5,7 @@ namespace DataAnnotationsExample.Validator;
 
 public class InUniversityValidationAttribute : ValidationAttribute
 {
-    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
     {
         Student student = (Student)validationContext.ObjectInstance;
         if (!student.UniversityStudent)

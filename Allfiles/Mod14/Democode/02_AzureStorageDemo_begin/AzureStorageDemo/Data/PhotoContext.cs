@@ -11,7 +11,7 @@ public class PhotoContext : DbContext
 
     }
 
-    public DbSet<Photo> Photos { get; set; }
+    public DbSet<Photo> Photos { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

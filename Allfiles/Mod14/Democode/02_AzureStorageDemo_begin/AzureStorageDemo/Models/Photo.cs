@@ -4,34 +4,33 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AzureStorageDemo.Models
+namespace AzureStorageDemo.Models;
+
+public class Photo
 {
-    public class Photo
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        [Required]
-        public string Title { get; set; }
+    [Required]
+    public string Title { get; set; } = null!;
 
-        [DisplayName("Picture")]
-        public string ImageName { get; set; }
+    [DisplayName("Picture")]
+    public string? ImageName { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
-        public string ImageMimeType { get; set; }
+    [HiddenInput(DisplayValue = false)]
+    public string? ImageMimeType { get; set; }
 
-        [DataType(DataType.MultilineText)]
-        public string Description { get; set; }
+    [DataType(DataType.MultilineText)]
+    public string? Description { get; set; }
 
-        [Display(Name = "Upload")]
-        [Required(ErrorMessage = "Please select a picture")]
-        [NotMapped]
-        public IFormFile PhotoAvatar { get; set; }
+    [Display(Name = "Upload")]
+    [Required(ErrorMessage = "Please select a picture")]
+    [NotMapped]
+    public IFormFile? PhotoAvatar { get; set; }
 
-        public byte[] PhotoFile { get; set; }
+    public byte[]? PhotoFile { get; set; }
 
-        [DataType(DataType.DateTime)]
-        [DisplayName("Created Date")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yy}", ApplyFormatInEditMode = true)]
-        public DateTime CreatedDate { get; set; }
-    }
+    [DataType(DataType.DateTime)]
+    [DisplayName("Created Date")]
+    [DisplayFormat(DataFormatString = "{0:dd/MM/yy}", ApplyFormatInEditMode = true)]
+    public DateTime CreatedDate { get; set; }
 }

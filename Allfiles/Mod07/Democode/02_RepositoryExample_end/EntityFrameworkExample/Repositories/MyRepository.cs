@@ -26,6 +26,7 @@ public class MyRepository : IRepository
     public void UpdatePerson(int id)
     {
         var person = _context.People.SingleOrDefault(m => m.PersonId == id);
+        if (person == null) return;
         person.FirstName = "Brandon";
         _context.Update(person);
         _context.SaveChanges();
@@ -34,6 +35,7 @@ public class MyRepository : IRepository
     public void DeletePerson(int id)
     {
         var person = _context.People.SingleOrDefault(m => m.PersonId == id);
+        if (person == null) return;
         _context.People.Remove(person);
         _context.SaveChanges();
     }

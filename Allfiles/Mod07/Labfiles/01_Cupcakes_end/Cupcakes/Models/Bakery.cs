@@ -8,13 +8,13 @@ public class Bakery
     public int BakeryId { get; set; }
 
     [StringLength(50, MinimumLength = 4)]
-    public string BakeryName { get; set; }
+    public string? BakeryName { get; set; }
 
     [Range(1, 40)]
     public int Quantity { get; set; }
 
     [StringLength(50, MinimumLength = 4)]
-    public string Address { get; set; }
+    public string? Address { get; set; }
 
-    public virtual ICollection<Cupcake> Cupcakes { get; set; }
+    public virtual ICollection<Cupcake> Cupcakes { get; set; } = null!;
 }
