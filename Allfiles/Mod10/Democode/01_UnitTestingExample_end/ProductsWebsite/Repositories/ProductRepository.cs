@@ -17,4 +17,3 @@ public class ProductRepository : IProductRepository
         return _context.Products.ToList();
     }
 }
-

@@ -3,7 +3,6 @@ using ProductsWebsite.Repositories;
 
 namespace ProductsWebsite.Controllers;
 
-
 public class ProductController : Controller
 {
     private IProductRepository _repository;
