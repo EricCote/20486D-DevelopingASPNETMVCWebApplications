@@ -18,10 +18,10 @@ public class ProductControllerTest
         IProductRepository fakeProductRepository = new FakeProductRepository();
         ProductController productController = new ProductController(fakeProductRepository);
         // Act
-        ViewResult viewResult = productController.Index() as ViewResult;
-        List<Product> products = viewResult.Model as List<Product>;
+        ViewResult? viewResult = productController.Index() as ViewResult;
+        List<Product>? products = viewResult?.Model as List<Product>;
         // Assert
-        Assert.AreEqual(3, products.count);
+        Assert.AreEqual(3, products?.Count);
     }
 
     [TestMethod]
@@ -32,11 +32,12 @@ public class ProductControllerTest
         var productController = new ProductController(fakeProductRepository);
         // Act
         var viewResult = productController.GetProduct(2) as ViewResult;
-        Product product = viewResult.Model as Product;
+        Product? product = viewResult?.Model as Product;
         // Assert
-        Assert.AreEqual(2, product.Id);
+        Assert.AreEqual(2, product?.Id);
+        Assert.AreEqual("Product2's name", product?.Name);
+        Assert.AreEqual(2.2f, product?.BasePrice);
+   
     }
-
-
 
 }

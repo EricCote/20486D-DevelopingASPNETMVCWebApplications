@@ -1,7 +1,7 @@
-﻿{
+{
   "iisSettings": {
-    "windowsAuthentication": false, 
-    "anonymousAuthentication": true, 
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:64129",
       "sslPort": 0
@@ -11,10 +11,10 @@
     "AzureWebAppExample": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:6401",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "http://localhost:6401"
     },
     "IIS Express": {
       "commandName": "IISExpress",
