@@ -45,7 +45,7 @@ public class IceCreamController : Controller
 
     public IActionResult GetImage(int iceCreamId)
     {
-        IceCream requestedPhoto = _repository.GetIceCreamFlavorById(iceCreamId);
+        IceCream? requestedPhoto = _repository.GetIceCreamFlavorById(iceCreamId);
         if (requestedPhoto != null)
         {
             string webRootpath = _environment.WebRootPath;
@@ -58,7 +58,7 @@ public class IceCreamController : Controller
             {
                 fileBytes = br.ReadBytes((int)fileOnDisk.Length);
             }
-            return File(fileBytes, requestedPhoto.ImageMimeType);
+            return File(fileBytes, requestedPhoto.ImageMimeType!);
         }
         else
         {

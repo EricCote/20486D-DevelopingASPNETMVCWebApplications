@@ -50,7 +50,7 @@ public class ZooController : Controller
 
     public IActionResult GetImage(int photoId)
     {
-        Photo requestedPhoto = _context.Photos.FirstOrDefault(p => p.PhotoID == photoId);
+        Photo? requestedPhoto = _context.Photos.FirstOrDefault(p => p.PhotoID == photoId);
         if (requestedPhoto != null)
         {
             string webRootpath = _environment.WebRootPath;
@@ -63,7 +63,7 @@ public class ZooController : Controller
             {
                 fileBytes = br.ReadBytes((int)fileOnDisk.Length);
             }
-            return File(fileBytes, requestedPhoto.ImageMimeType);
+            return File(fileBytes, requestedPhoto.ImageMimeType!);
         }
         else
         {

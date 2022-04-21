@@ -11,7 +11,7 @@
     "GulpExample": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:5902",
+      "applicationUrl": "http://localhost:5942",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

@@ -1,7 +1,6 @@
 ﻿using IceCreamCompany.Models;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace IceCreamCompany.Data;
 
 public class IceCreamContext : DbContext
@@ -10,8 +9,8 @@ public class IceCreamContext : DbContext
     {
     }
 
-    public DbSet<IceCream> IceCreamFlavors { get; set; }
-    public DbSet<Customer> Customers { get; set; }
+    public DbSet<IceCream> IceCreamFlavors { get; set; } = null!;
+    public DbSet<Customer> Customers { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

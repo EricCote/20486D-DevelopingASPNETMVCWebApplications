@@ -1,7 +1,6 @@
 ﻿using GridExample.Models;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace GridExample.Data;
 
 public class ChessLeagueContext : DbContext
@@ -11,7 +10,7 @@ public class ChessLeagueContext : DbContext
     {
     }
 
-    public DbSet<Game> Games { get; set; }
+    public DbSet<Game> Games { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

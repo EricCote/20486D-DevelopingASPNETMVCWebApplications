@@ -10,7 +10,7 @@ public class ChessLeagueContext : DbContext
     {
     }
 
-    public DbSet<Game> Games { get; set; }
+    public DbSet<Game> Games { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

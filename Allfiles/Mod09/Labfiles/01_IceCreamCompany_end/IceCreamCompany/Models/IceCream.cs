@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace IceCreamCompany.Models;
 
@@ -15,15 +15,14 @@ public class IceCream
     [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
     [Required]
     [StringLength(30)]
-    public string Flavor { get; set; }
+    public string Flavor { get; set; } = "";
 
     [DisplayName("Picture")]
     [MaxLength]
-    public string PhotoFileName { get; set; }
+    public string? PhotoFileName { get; set; }
 
     [HiddenInput(DisplayValue = false)]
-    public string ImageMimeType { get; set; }
+    public string? ImageMimeType { get; set; }
 
-    public virtual List<IceCreamFlavorsCustomers> IceCreamFlavors { get; set; }
+    public virtual List<IceCreamFlavorsCustomers> IceCreamFlavors { get; set; } = new List<IceCreamFlavorsCustomers>();
 }
-

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.FileProviders;
 
-
 namespace BootstrapExample.Middleware;
+
 public static class ApplicationBuilderExtensions
 {
     public static IApplicationBuilder UseNodeModules(this IApplicationBuilder applicationBuilder, string root)

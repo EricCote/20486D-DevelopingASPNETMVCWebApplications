@@ -18,7 +18,7 @@ public class Repository : IRepository
         _context.SaveChanges();
     }
 
-    public IceCream GetIceCreamFlavorById(int id)
+    public IceCream? GetIceCreamFlavorById(int id)
     {
         return _context.IceCreamFlavors.SingleOrDefault(i => i.IceCreamId == id);
     }
